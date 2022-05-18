@@ -72,6 +72,9 @@ dependency_overrides:
       url: https://github.com/alibaba/flutter_boost.git
       ref: 'v3.0-null-safety-preview.18'
 
+  fish_redux:
+    git: git@github.com:leftcoding/fish-redux.git
+
 
 # The following section is specific to Flutter.
 flutter:
