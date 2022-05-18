@@ -1,13 +1,15 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' as P;
 
 class ApplicationState implements Cloneable<ApplicationState> {
   int? page;
-  PageController? pageController;
+  P.PageController? pageController;
 
   @override
   ApplicationState clone() {
-    return ApplicationState()..page = page;
+    return ApplicationState()
+      ..page = page
+      ..pageController = pageController;
   }
 }
 
