@@ -1,5 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_wanandroid/repository/services/common_service.dart';
+import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
+import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
 import 'action.dart';
 import 'state.dart';
 
@@ -10,14 +12,14 @@ Effect<HomeState>? buildEffect() {
   });
 }
 
-void _initState(Action action, Context<HomeState> ctx) {
-  CommonService.getHomeBanner().then((value) {
-    print(">>>>>>>>value:${value.toJson()}");
-  });
+void _initState(Action action, Context<HomeState> ctx) async {
+  int page = 0;
+  HomeBannerWrap? bannerWrap = await CommonService.getHomeBanner();
 
-  CommonService.getHomeArticle(page: 0).then((value) {
-    print(">>>>>>>article:${value.toJson()}");
-  });
+  HomeArticleWrap? articleWrap = await CommonService.getHomeArticle(page: page);
+
+  ctx.dispatch(HomeActionCreator.didFetchAction(
+      bannerWrap, articleWrap!.data!.articleList));
 }
 
 void _onAction(Action action, Context<HomeState> ctx) {}
