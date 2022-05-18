@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boost/flutter_boost.dart';
 import 'package:fish_redux/fish_redux.dart' as FishRedux;
 import 'package:flutter_wanandroid/sections/application/page/page.dart';
+import 'package:flutter_wanandroid/sections/home/page/home/page.dart';
 
 class RouterHelper {
   static Route<dynamic>? getRouterFactory(
@@ -17,7 +18,8 @@ class RouterHelper {
           settings: setting, pageBuilder: (_, __, ___) => Container());
     },
 //    RouterKeys.login: _buildPage(() => Container()),
-    RouterKeys.applicaiton: _buildPage(() => ApplicationPage())
+    RouterKeys.applicaiton: _buildPage(() => ApplicationPage()),
+    RouterKeys.home: _buildPage(() => HomePage())
   };
 
   static FlutterBoostRouteFactory _buildPage(FishRedux.Page Function() page) {
@@ -44,5 +46,10 @@ class RouterHelper {
 class RouterKeys {
   static const login = "login";
   static const article = "article";
+
+  //入口类
   static const applicaiton = "application";
+
+  //首页
+  static const home = "home";
 }
