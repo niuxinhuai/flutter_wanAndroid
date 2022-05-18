@@ -2,24 +2,30 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/res/colors.dart';
 import 'package:flutter_wanandroid/sections/application/models/application.dart';
-
+import 'package:flutter_wanandroid/sections/home/page/home/page.dart';
 import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
     ApplicationState state, Dispatch dispatch, ViewService viewService) {
   return Scaffold(
-    appBar: AppBar(
-      title: Text("AppBar"),
-    ),
     body: PageView(
       physics: NeverScrollableScrollPhysics(),
-      children: ApplicationModule.tabTitles
-          .map((e) => Container(
-                alignment: Alignment.center,
-                child: Text(e),
-              ))
-          .toList(),
+      children: [
+        HomePage().buildPage({}),
+        Container(
+          alignment: Alignment.center,
+          child: Text('问答'),
+        ),
+        Container(
+          alignment: Alignment.center,
+          child: Text('体系'),
+        ),
+        Container(
+          alignment: Alignment.center,
+          child: Text('我的'),
+        )
+      ],
       onPageChanged: (int index) =>
           dispatch(ApplicationActionCreator.onPageChangedAction(index)),
       controller: state.pageController,
