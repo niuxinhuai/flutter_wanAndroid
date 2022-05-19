@@ -47,6 +47,8 @@ dependencies:
     #卡片切换
   card_swiper: ^1.0.4
 
+  html_unescape: ^2.0.0
+
   flutter_boost:
     git:
       url: https://github.com/alibaba/flutter_boost.git
