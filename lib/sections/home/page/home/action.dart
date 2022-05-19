@@ -2,8 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
 
-//TODO replace with your own action
-enum HomeAction { action, onLoading, didFetch }
+enum HomeAction { action, onLoading, onTapBanner, onTapCell, didFetch }
 
 class HomeActionCreator {
   static Action onAction() {
@@ -12,6 +11,14 @@ class HomeActionCreator {
 
   static Action onLoadingAction() {
     return const Action(HomeAction.onLoading);
+  }
+
+  static Action onTapBannerAction(HomeBannerBean bannerBean) {
+    return Action(HomeAction.onTapBanner, payload: bannerBean);
+  }
+
+  static Action onTapCellAction(HomeArticleBean articleBean) {
+    return Action(HomeAction.onTapCell, payload: articleBean);
   }
 
   static Action didFetchAction(

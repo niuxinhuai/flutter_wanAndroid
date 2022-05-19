@@ -9,6 +9,8 @@ Effect<HomeState>? buildEffect() {
   return combineEffects(<Object, Effect<HomeState>>{
     HomeAction.action: _onAction,
     Lifecycle.initState: _initState,
+    HomeAction.onTapBanner: _onTapBanner,
+    HomeAction.onTapCell: _onTapCell,
   });
 }
 
@@ -20,6 +22,17 @@ void _initState(Action action, Context<HomeState> ctx) async {
 
   ctx.dispatch(HomeActionCreator.didFetchAction(
       bannerWrap, articleWrap!.data!.articleList));
+}
+
+///banner点击
+void _onTapBanner(Action action, Context<HomeState> ctx) {
+  final HomeBannerBean bannerBean = action.payload;
+  print(">>>>>>>>>banner:${bannerBean.title ?? "123"}");
+}
+
+void _onTapCell(Action action, Context<HomeState> ctx) {
+  final HomeArticleBean articleBean = action.payload;
+  print(">>>>>>>>>>>cell:${articleBean.title}");
 }
 
 void _onAction(Action action, Context<HomeState> ctx) {}
