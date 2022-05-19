@@ -13,4 +13,20 @@ class CommonService {
   static Future<HomeArticleWrap?> getHomeArticle({int page = 0}) =>
       ServiceHelper.get(Uri.home_article(page))
           .then((json) => HomeArticleWrap.fromJson(json));
+
+  ///置顶文章
+  static Future<List<HomeArticleBean>?> getTopArticle() =>
+      ServiceHelper.get(Uri.top_article).then((json) {
+        if (json != null) {
+          List? datas = json['data'];
+          if (datas != null && datas.length != 0) {
+            List<HomeArticleBean> beans = [];
+            for (Map<String, dynamic> js in datas) {
+              beans.add(HomeArticleBean.fromJson(js));
+            }
+            return beans;
+          }
+        }
+        return null;
+      });
 }

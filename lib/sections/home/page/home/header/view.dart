@@ -18,8 +18,8 @@ Widget buildView(
         loop: true,
         index: 0,
         itemCount: state.data!.length,
-        viewportFraction: 0.85,
-        scale: 0.9,
+//        viewportFraction: 1.0, //0.85,
+        scale: 1.0,
         onTap: (int index) =>
             dispatch(HomeActionCreator.onTapBannerAction(state.data![index])),
         itemBuilder: (BuildContext context, int index) {
