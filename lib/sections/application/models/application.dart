@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/res/colors.dart';
 
 class ApplicationModule {
-  static const List<String> tabTitles = ['首页', '问答', '体系', '我的'];
+  static const List<String> tabTitles = ['首页', '体系', '公众号', '我的'];
   static const List<IconData> tabIcons = [
     Icons.home,
     Icons.message,

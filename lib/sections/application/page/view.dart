@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/res/colors.dart';
 import 'package:flutter_wanandroid/sections/application/models/application.dart';
 import 'package:flutter_wanandroid/sections/home/page/home/page.dart';
+import 'package:flutter_wanandroid/sections/home/page/knowledge/page.dart';
 import 'action.dart';
 import 'state.dart';
 
@@ -13,13 +14,10 @@ Widget buildView(
       physics: NeverScrollableScrollPhysics(),
       children: [
         HomePage().buildPage({}),
+        KnowledgePage().buildPage({}),
         Container(
           alignment: Alignment.center,
-          child: Text('问答'),
-        ),
-        Container(
-          alignment: Alignment.center,
-          child: Text('体系'),
+          child: Text('公众号'),
         ),
         Container(
           alignment: Alignment.center,
