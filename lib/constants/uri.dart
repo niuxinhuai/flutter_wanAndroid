@@ -44,4 +44,20 @@ class Uri {
 
   ///热搜
   static const String hotSearch = "/hotkey/json";
+
+  ///登录
+  ///方法：POST
+  ///参数：
+  ///	username，password
+  static const String login = "user/login";
+
+  ///注册
+  ///方法：POST
+  ///参数
+  ///	username,password,repassword
+  static const String register = "user/register";
+
+  ///退出登录
+  ///方法：GET
+  static const String logout = "user/logout/json";
 }
