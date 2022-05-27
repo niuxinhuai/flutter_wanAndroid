@@ -47,6 +47,7 @@ class HomeArticleBean {
   String? desc;
   String? descMd;
   String? envelopePic;
+  //是否是新发布的文章
   bool? fresh;
   String? host;
   int? id;
@@ -65,6 +66,7 @@ class HomeArticleBean {
   String? superChapterName;
   List<ArticleTagBean>? tags;
   String? title;
+  //1代表置顶，
   int? type;
   int? userId;
   int? visible;

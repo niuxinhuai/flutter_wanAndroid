@@ -21,7 +21,7 @@ Widget _buildBody(HomeState state, Dispatch dispatch, ViewService viewService) {
     enablePullUp: state.loadNoMoreData! ? false : true,
     onLoading: () => dispatch(HomeActionCreator.onLoadingAction()),
     child: ListView.builder(
-      padding: EdgeInsets.only(left: 15, top: 0, right: 15, bottom: 20),
+      padding: EdgeInsets.only(top: 0, bottom: 20),
       physics: AlwaysScrollableScrollPhysics(),
       itemCount: adapter!.itemCount,
       itemBuilder: adapter.itemBuilder!,

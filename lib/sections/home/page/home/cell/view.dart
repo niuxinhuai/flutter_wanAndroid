@@ -5,6 +5,8 @@ import 'package:flutter_wanandroid/res/colors.dart';
 import 'package:flutter_wanandroid/res/other_theme.dart';
 import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/page/home/action.dart';
+import 'package:flutter_wanandroid/sections/home/widget/article_bottom.dart';
+import 'package:flutter_wanandroid/sections/home/widget/article_header.dart';
 import 'package:flutter_wanandroid/utils/string_util.dart';
 import 'package:flutter_wanandroid/widget/card.dart';
 
@@ -24,30 +26,10 @@ Widget buildView(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text.rich(TextSpan(children: [
-                  TextSpan(
-                    text: '新',
-                    style: GpOtherTheme.size13(viewService.context)!
-                        .copyWith(color: CommonColors.kaoyanPayTwoColor),
-                  ),
-                  TextSpan(
-                      text: !StringUtils.isNullOrEmpty(state.author)
-                          ? state.author
-                          : state.shareUser ?? '',
-                      style: GpOtherTheme.size13(viewService.context))
-                ])),
-                Text(
-                  state.niceDate ?? "",
-                  style: GpOtherTheme.size13(viewService.context),
-                )
-              ],
-            ),
-          ),
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: ArticleHeaderWidget(
+                bean: state,
+              )),
           Text(
             StringUtils.stripHtmlIfNeeded(state.title ?? ""),
             maxLines: 2,
@@ -69,33 +51,10 @@ Widget buildView(
             ),
           Padding(
             padding: EdgeInsets.only(top: 15, bottom: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text.rich(TextSpan(children: [
-                  TextSpan(
-                    text: '新',
-                    style: GpOtherTheme.size13(viewService.context)!
-                        .copyWith(color: CommonColors.kaoyanPayTwoColor),
-                  ),
-                  TextSpan(
-                      text: (state.superChapterName != null
-                              ? state.superChapterName! + ' · '
-                              : '') +
-                          (state.chapterName ?? ''),
-                      style: GpOtherTheme.size13(viewService.context))
-                ])),
-                Container(
-                  width: 25,
-                  height: 25,
-                  color: Colors.cyan,
-                  child: Icon(
-                    Icons.favorite_border,
-                    color: Colors.red,
-                    size: 25,
-                  ),
-                )
-              ],
+            child: ArticleBottomWidget(
+              bean: state,
+              iconData: Icons.favorite_border,
+              callBack: () {},
             ),
           )
         ],

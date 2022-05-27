@@ -1,8 +1,13 @@
 import 'package:fish_redux/fish_redux.dart';
+//import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' as P;
+import 'package:flutter_wanandroid/helper/router.dart';
+import 'package:flutter_wanandroid/helper/router_helper.dart';
 import 'package:flutter_wanandroid/repository/services/common_service.dart';
 import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
 import 'package:flutter_wanandroid/utils/string_util.dart';
+import 'package:flutter_wanandroid/widget/webview.dart';
 import 'package:html_unescape/html_unescape.dart';
 
 import 'action.dart';
@@ -44,14 +49,15 @@ void _initState(Action action, Context<HomeState> ctx) async {
 ///banner点击
 void _onTapBanner(Action action, Context<HomeState> ctx) {
   final HomeBannerBean bannerBean = action.payload;
-  print(">>>>>>>>>banner:${bannerBean.title ?? "123"}");
+  ARouter.open(ctx.context, RouterKeys.webView,
+      params: {"url": bannerBean.url ?? ""});
 }
 
 void _onTapCell(Action action, Context<HomeState> ctx) {
   final HomeArticleBean articleBean = action.payload;
 
-  print(
-      ">>>>>>>>>>>cell:${articleBean.title}  >>>>>>des:${StringUtils.stripHtmlIfNeeded(articleBean.desc ?? "空").trim()}");
+  ARouter.open(ctx.context, RouterKeys.webView,
+      params: {"url": articleBean.link ?? ""});
 }
 
 void _onAction(Action action, Context<HomeState> ctx) {}
