@@ -27,7 +27,7 @@ void _initState(Action action, Context<HomeState> ctx) async {
   HomeBannerWrap? bannerWrap = await CommonService.getHomeBanner();
 
   HomeArticleWrap? articleWrap =
-      await CommonService.getHomeArticle(page: ctx.state.page!);
+      await CommonService.getHomeArticle(page: ctx.state.page);
 
   List<HomeArticleBean>? topBeans = await CommonService.getTopArticle();
 
@@ -63,7 +63,7 @@ void _onTapCell(Action action, Context<HomeState> ctx) {
 
 void _onLoading(Action action, Context<HomeState> ctx) async {
   HomeArticleWrap? articleWrap =
-      await CommonService.getHomeArticle(page: ctx.state.page!);
+      await CommonService.getHomeArticle(page: ctx.state.page);
   ctx.dispatch(HomeActionCreator.didLoadingAction(articleWrap));
 }
 
