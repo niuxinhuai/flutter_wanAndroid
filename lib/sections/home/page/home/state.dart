@@ -6,7 +6,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class HomeState extends ItemListLike implements Cloneable<HomeState> {
   HomeBannerWrap? bannerWrap;
   List<HomeArticleBean>? beans = [];
-  int? page;
+  int page = 0;
   RefreshController? refreshController;
   bool? loadNoMoreData;
 

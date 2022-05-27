@@ -19,14 +19,15 @@ Effect<HomeState>? buildEffect() {
     Lifecycle.initState: _initState,
     HomeAction.onTapBanner: _onTapBanner,
     HomeAction.onTapCell: _onTapCell,
+    HomeAction.onLoading: _onLoading,
   });
 }
 
 void _initState(Action action, Context<HomeState> ctx) async {
-  int page = 0;
   HomeBannerWrap? bannerWrap = await CommonService.getHomeBanner();
 
-  HomeArticleWrap? articleWrap = await CommonService.getHomeArticle(page: page);
+  HomeArticleWrap? articleWrap =
+      await CommonService.getHomeArticle(page: ctx.state.page!);
 
   List<HomeArticleBean>? topBeans = await CommonService.getTopArticle();
 
@@ -58,6 +59,12 @@ void _onTapCell(Action action, Context<HomeState> ctx) {
 
   ARouter.open(ctx.context, RouterKeys.webView,
       params: {"url": articleBean.link ?? ""});
+}
+
+void _onLoading(Action action, Context<HomeState> ctx) async {
+  HomeArticleWrap? articleWrap =
+      await CommonService.getHomeArticle(page: ctx.state.page!);
+  ctx.dispatch(HomeActionCreator.didLoadingAction(articleWrap));
 }
 
 void _onAction(Action action, Context<HomeState> ctx) {}
