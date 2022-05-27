@@ -11,6 +11,15 @@ class Uri {
   ///置顶文章
   static const String top_article = "article/top/json";
 
+  ///知识体系
+  ///方法：GET
+  static const String knowledge = "tree/json";
+
+  ///知识体系下的文章
+  ///方法：GET
+  static String knowledge_article(int page, int cid) =>
+      "article/list/$page/json?cid=$cid";
+
   ///微信公众号文章
   ///方法：GET
   static const String wxArticle = "wxarticle/chapters/json";

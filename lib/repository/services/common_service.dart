@@ -2,6 +2,7 @@ import 'package:flutter_wanandroid/constants/uri.dart';
 import 'package:flutter_wanandroid/helper/service_helper.dart';
 import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
+import 'package:flutter_wanandroid/sections/home/models/knowledge/knowledge.dart';
 
 class CommonService {
   ///首页banner
@@ -29,4 +30,9 @@ class CommonService {
         }
         return null;
       });
+
+  ///知识体系
+  static Future<KnowledgeArticleWrap> getKnowledge() =>
+      ServiceHelper.get(Uri.knowledge)
+          .then((json) => KnowledgeArticleWrap.fromJson(json));
 }
