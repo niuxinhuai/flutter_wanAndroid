@@ -14,3 +14,6 @@ shared_preferences_macos=/Users/niuxinhuai/.pub-cache/hosted/pub.flutter-io.cn/s
 shared_preferences_web=/Users/niuxinhuai/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences_web-2.0.4/
 shared_preferences_windows=/Users/niuxinhuai/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences_windows-2.1.1/
 sqflite=/Users/niuxinhuai/.pub-cache/hosted/pub.flutter-io.cn/sqflite-2.0.2/
+webview_flutter=/Users/niuxinhuai/.pub-cache/hosted/pub.flutter-io.cn/webview_flutter-3.0.4/
+webview_flutter_android=/Users/niuxinhuai/.pub-cache/hosted/pub.flutter-io.cn/webview_flutter_android-2.8.8/
+webview_flutter_wkwebview=/Users/niuxinhuai/.pub-cache/hosted/pub.flutter-io.cn/webview_flutter_wkwebview-2.7.5/
