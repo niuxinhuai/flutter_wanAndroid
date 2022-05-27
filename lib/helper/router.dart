@@ -1,23 +1,23 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_boost/flutter_boost.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_wanandroid/helper/router_helper.dart';
 
 class ARouter {
-  static Future<Map<dynamic, dynamic>> open(String url,
-      {Map<String, dynamic>? params,
-      bool withContainer = true,
-      bool opaque = false}) {
-    return BoostNavigator.instance.push(url,
-        arguments: params, withContainer: withContainer, opaque: opaque);
+  static open(BuildContext context, String url,
+      {Map<String, dynamic>? params}) {
+    return Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext context) {
+      return RouterHelper.routers[url]!.buildPage(params);
+    }));
   }
 
-  static Future<bool> close(BuildContext context,
-      {Map<String, dynamic>? result}) {
-    return BoostNavigator.instance.pop(result);
+  static close(BuildContext context, {Map<String, dynamic>? result}) {
+    return Navigator.pop(context, result);
   }
 
   static closeDelay(BuildContext context, Duration dutation) {
     return Future.delayed(dutation, () {
-      return BoostNavigator.instance.pop();
+      return Navigator.pop(context);
     });
   }
 }
