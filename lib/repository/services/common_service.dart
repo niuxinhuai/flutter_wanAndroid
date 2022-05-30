@@ -2,7 +2,7 @@ import 'package:flutter_wanandroid/constants/uri.dart';
 import 'package:flutter_wanandroid/helper/service_helper.dart';
 import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
-import 'package:flutter_wanandroid/sections/home/models/knowledge/knowledge.dart';
+import 'package:flutter_wanandroid/sections/knowledge/models/knowledge/knowledge.dart';
 
 class CommonService {
   ///首页banner
@@ -35,4 +35,16 @@ class CommonService {
   static Future<KnowledgeArticleWrap> getKnowledge() =>
       ServiceHelper.get(Uri.knowledge)
           .then((json) => KnowledgeArticleWrap.fromJson(json));
+
+  ///知识体系下的文章
+  static Future<List<HomeArticleBean>> getKnowledgeUserArticle(
+          int page, int cid) =>
+      ServiceHelper.get(Uri.knowledge_article(page, cid)).then((json) {
+        List<HomeArticleBean> items = [];
+        List<dynamic> list = json['data']['datas'];
+        for (dynamic map in list) {
+          items.add(HomeArticleBean.fromJson(map));
+        }
+        return items;
+      });
 }
