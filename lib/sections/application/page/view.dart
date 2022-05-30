@@ -2,8 +2,6 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/res/colors.dart';
 import 'package:flutter_wanandroid/sections/application/models/application.dart';
-import 'package:flutter_wanandroid/sections/home/page/home/page.dart';
-import 'package:flutter_wanandroid/sections/home/page/knowledge/page.dart';
 import 'action.dart';
 import 'state.dart';
 
@@ -12,18 +10,7 @@ Widget buildView(
   return Scaffold(
     body: PageView(
       physics: NeverScrollableScrollPhysics(),
-      children: [
-        HomePage().buildPage({}),
-        KnowledgePage().buildPage({}),
-        Container(
-          alignment: Alignment.center,
-          child: Text('公众号'),
-        ),
-        Container(
-          alignment: Alignment.center,
-          child: Text('我的'),
-        )
-      ],
+      children: state.children.toList(),
       onPageChanged: (int index) =>
           dispatch(ApplicationActionCreator.onPageChangedAction(index)),
       controller: state.pageController,
