@@ -7,12 +7,27 @@ import 'state.dart';
 
 Widget buildView(
     CustomWebViewState state, Dispatch dispatch, ViewService viewService) {
+  print(">>>>>>>>>>>progress:${state.progress}");
   return Scaffold(
     appBar: AppBar(
       title: Text('这是webview'),
     ),
-    body: WebViewWidget(
-      url: state.url,
+    body: Stack(
+      children: [
+        WebViewWidget(
+          url: state.url,
+          onProgress: (int progress) =>
+              dispatch(CustomWebViewActionCreator.onProgressAction(progress)),
+          onPageFinished: (String url) =>
+              dispatch(CustomWebViewActionCreator.onPageFinishedAction(url)),
+        ),
+        if (state.showProgress)
+          LinearProgressIndicator(
+            backgroundColor: Colors.grey,
+            valueColor: new AlwaysStoppedAnimation(Colors.blue),
+            value: state.progress.toDouble() * 0.01,
+          )
+      ],
     ),
   );
 }

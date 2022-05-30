@@ -2,10 +2,15 @@ import 'package:fish_redux/fish_redux.dart';
 
 class CustomWebViewState implements Cloneable<CustomWebViewState> {
   String? url;
+  int progress = 0;
+  bool showProgress = true;
 
   @override
   CustomWebViewState clone() {
-    return CustomWebViewState()..url = url;
+    return CustomWebViewState()
+      ..url = url
+      ..progress = progress
+      ..showProgress = showProgress;
   }
 }
 
