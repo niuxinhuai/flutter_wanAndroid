@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter_wanandroid/sections/home/models/knowledge/knowledge.dart';
-import 'package:flutter_wanandroid/sections/home/page/knowledge/state.dart';
+import 'package:flutter_wanandroid/sections/knowledge/models/knowledge/knowledge.dart';
+import 'package:flutter_wanandroid/sections/knowledge/page/knowledge/state.dart';
 
 class CellConnector extends ConnOp<KnowledgeState, KnowledgeStage> {
   final int index;

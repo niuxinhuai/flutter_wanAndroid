@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter_wanandroid/sections/home/models/knowledge/knowledge.dart';
+import 'package:flutter_wanandroid/sections/knowledge/models/knowledge/knowledge.dart';
 
 class KnowledgeState extends ItemListLike implements Cloneable<KnowledgeState> {
   KnowledgeArticleWrap? wrap;

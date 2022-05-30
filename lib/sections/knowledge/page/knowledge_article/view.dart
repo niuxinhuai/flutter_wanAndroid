@@ -2,19 +2,21 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/res/colors.dart';
 import 'package:flutter_wanandroid/res/other_theme.dart';
+import 'package:flutter_wanandroid/widget/segment.dart';
 
 import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
     KnowledgeArticleState state, Dispatch dispatch, ViewService viewService) {
-  return Scaffold(
-    appBar: AppBar(
-      title: Text(state.stage.name ?? ""),
-      bottom: _buildBottomBar(state, dispatch, viewService),
-    ),
-    backgroundColor: CommonColors.foregroundColor,
-  );
+  return TabBarSegmentController(
+      useScaffold: true,
+      navgationTitle: state.stage.name ?? "",
+      onTap: (int index) {},
+      backgroundColor: CommonColors.foregroundColor,
+      tabBarIsScrollable: true,
+      tabTitles: state.tabTitles.toList(),
+      children: state.children.toList());
 }
 
 PreferredSizeWidget _buildBottomBar(

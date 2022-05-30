@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter_wanandroid/sections/home/page/knowledge/flow_adapter/adapter.dart';
+import 'package:flutter_wanandroid/sections/knowledge/page/knowledge/flow_adapter/adapter.dart';
 
 import 'effect.dart';
 import 'reducer.dart';

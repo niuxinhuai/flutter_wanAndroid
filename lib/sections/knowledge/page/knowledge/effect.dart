@@ -2,7 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_wanandroid/helper/router.dart';
 import 'package:flutter_wanandroid/helper/router_helper.dart';
 import 'package:flutter_wanandroid/repository/services/common_service.dart';
-import 'package:flutter_wanandroid/sections/home/models/knowledge/knowledge.dart';
+import 'package:flutter_wanandroid/sections/knowledge/models/knowledge/knowledge.dart';
 import 'action.dart';
 import 'state.dart';
 

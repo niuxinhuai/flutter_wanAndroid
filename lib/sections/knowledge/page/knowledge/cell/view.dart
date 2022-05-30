@@ -2,8 +2,8 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/res/colors.dart';
 import 'package:flutter_wanandroid/res/other_theme.dart';
-import 'package:flutter_wanandroid/sections/home/models/knowledge/knowledge.dart';
-import 'package:flutter_wanandroid/sections/home/page/knowledge/action.dart';
+import 'package:flutter_wanandroid/sections/knowledge/models/knowledge/knowledge.dart';
+import 'package:flutter_wanandroid/sections/knowledge/page/knowledge/action.dart';
 
 Widget buildView(
     KnowledgeStage state, Dispatch dispatch, ViewService viewService) {
