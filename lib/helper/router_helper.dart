@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart' as FishRedux;
 import 'package:flutter_wanandroid/sections/application/page/page.dart';
 import 'package:flutter_wanandroid/sections/home/page/home/page.dart';
-import 'package:flutter_wanandroid/sections/home/page/knowledge_article/page.dart';
 import 'package:flutter_wanandroid/sections/home/page/webview/page.dart';
+import 'package:flutter_wanandroid/sections/knowledge/page/knowledge_article/page.dart';
 
 class RouterHelper {
   static Map<String, FishRedux.Page> routers = {
