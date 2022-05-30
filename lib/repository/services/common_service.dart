@@ -3,6 +3,7 @@ import 'package:flutter_wanandroid/helper/service_helper.dart';
 import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
 import 'package:flutter_wanandroid/sections/knowledge/models/knowledge/knowledge.dart';
+import 'package:flutter_wanandroid/sections/navigation/models/navigation.dart';
 
 class CommonService {
   ///首页banner
@@ -47,4 +48,31 @@ class CommonService {
         }
         return items;
       });
+
+  ///微信公众号
+  static Future<List<KnowledgeChildItem>> getWxArticle() =>
+      ServiceHelper.get(Uri.wxArticle).then((json) {
+        List<KnowledgeChildItem> items = [];
+        List<dynamic> list = json['data'];
+        for (dynamic map in list) {
+          items.add(KnowledgeChildItem.fromJson(map));
+        }
+        return items;
+      });
+
+  ///微信公众号下的文章
+  static Future<List<HomeArticleBean>> getWxUserArticle(int page, int id) =>
+      ServiceHelper.get(Uri.wxUserArticleList(id, page)).then((json) {
+        List<HomeArticleBean> items = [];
+        List<dynamic> list = json['data']['datas'];
+        for (dynamic map in list) {
+          items.add(HomeArticleBean.fromJson(map));
+        }
+        return items;
+      });
+
+  ///导航
+  static Future<NavigationArticleWrap> getNavigationData() =>
+      ServiceHelper.get(Uri.navigationJson)
+          .then((json) => NavigationArticleWrap.fromJson(json));
 }
