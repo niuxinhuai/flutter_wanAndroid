@@ -10,12 +10,6 @@ Effect<KnowledgeArticleState>? buildEffect() {
   });
 }
 
-void _initState(Action action, Context<KnowledgeArticleState> ctx) {
-  final Object tickerProvider = ctx.stfState!;
-  ctx.state.tabController = P.TabController(
-      initialIndex: ctx.state.curIndex,
-      length: ctx.state.stage.children!.length,
-      vsync: tickerProvider as P.TickerProvider);
-}
+void _initState(Action action, Context<KnowledgeArticleState> ctx) {}
 
 void _onAction(Action action, Context<KnowledgeArticleState> ctx) {}

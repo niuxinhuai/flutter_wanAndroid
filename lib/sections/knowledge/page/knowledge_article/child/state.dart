@@ -9,6 +9,7 @@ class KnowledgeArticleSegmentState
   KnowledgeChildItem? item;
   int page = 0;
   int cid = 0;
+  ArticlePageType type = ArticlePageType.knowledge;
   RefreshController? refreshController;
   bool? loadNoMoreData;
 
@@ -20,16 +21,19 @@ class KnowledgeArticleSegmentState
       ..cid = cid
       ..items = items
       ..refreshController = refreshController
-      ..loadNoMoreData = loadNoMoreData;
+      ..loadNoMoreData = loadNoMoreData
+      ..type = type;
   }
 }
 
 KnowledgeArticleSegmentState initState(Map<String, dynamic>? args) {
   final KnowledgeChildItem childItem =
       KnowledgeChildItem.fromJson(args!["params"]);
+  final ArticlePageType type = args["type"];
   return KnowledgeArticleSegmentState()
     ..item = childItem
     ..cid = childItem.id ?? 0
     ..refreshController = RefreshController(initialRefresh: false)
-    ..loadNoMoreData = false;
+    ..loadNoMoreData = false
+    ..type = type;
 }

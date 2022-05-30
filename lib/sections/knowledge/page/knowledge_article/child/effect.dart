@@ -18,8 +18,10 @@ Effect<KnowledgeArticleSegmentState>? buildEffect() {
 
 void _initState(
     Action action, Context<KnowledgeArticleSegmentState> ctx) async {
-  List<HomeArticleBean> items = await CommonService.getKnowledgeUserArticle(
-      ctx.state.page, ctx.state.cid);
+  List<HomeArticleBean> items = ctx.state.type == ArticlePageType.knowledge
+      ? await CommonService.getKnowledgeUserArticle(
+          ctx.state.page, ctx.state.cid)
+      : await CommonService.getWxUserArticle(ctx.state.page, ctx.state.cid);
   ctx.dispatch(KnowledgeArticleSegmentActionCreator.didFetchDataAction(items));
 }
 

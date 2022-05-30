@@ -7,7 +7,6 @@ import 'package:flutter_wanandroid/sections/knowledge/page/knowledge_article/chi
 class KnowledgeArticleState implements Cloneable<KnowledgeArticleState> {
   KnowledgeStage stage = KnowledgeStage();
   int curIndex = 0;
-  TabController? tabController;
   List<Widget> children = [];
   List<String> tabTitles = [];
 
@@ -16,7 +15,6 @@ class KnowledgeArticleState implements Cloneable<KnowledgeArticleState> {
     return KnowledgeArticleState()
       ..stage = stage
       ..curIndex = curIndex
-      ..tabController = tabController
       ..children = children
       ..tabTitles = tabTitles;
   }
@@ -28,8 +26,8 @@ KnowledgeArticleState initState(Map<String, dynamic>? args) {
   List<Widget> children = [];
   List<String> tabTitles = [];
   for (KnowledgeChildItem item in stage.children!) {
-    children.add(
-        KnowledgeArticleSegmentPage().buildPage({"params": item.toJson()}));
+    children.add(KnowledgeArticleSegmentPage().buildPage(
+        {"params": item.toJson(), "type": ArticlePageType.knowledge}));
     tabTitles.add(item.name ?? "");
   }
 
