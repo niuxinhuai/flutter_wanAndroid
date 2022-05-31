@@ -3,6 +3,8 @@ import 'package:flutter_wanandroid/sections/application/page/page.dart';
 import 'package:flutter_wanandroid/sections/home/page/home/page.dart';
 import 'package:flutter_wanandroid/sections/home/page/webview/page.dart';
 import 'package:flutter_wanandroid/sections/knowledge/page/knowledge_article/page.dart';
+import 'package:flutter_wanandroid/sections/search/page/result/page.dart';
+import 'package:flutter_wanandroid/sections/search/page/search/page.dart';
 
 class RouterHelper {
   static Map<String, FishRedux.Page> routers = {
@@ -10,6 +12,8 @@ class RouterHelper {
     RouterKeys.home: HomePage(),
     RouterKeys.knowledge_article: KnowledgeArticlePage(),
     RouterKeys.webView: CustomWebViewPage(),
+    RouterKeys.search: SearchArticlePage(),
+    RouterKeys.search_result: SearchResultPage()
   };
 }
 
@@ -31,4 +35,10 @@ class RouterKeys {
 
   //webview
   static const webView = "webView";
+
+  //搜索
+  static const search = "search";
+
+  //搜索结果
+  static const search_result = "search_result";
 }
