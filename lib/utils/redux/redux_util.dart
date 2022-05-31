@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:fish_redux/fish_redux.dart';
 
-/// Created by cnting on 2019-11-19
 class ReduxUtil {
   ///如果action是Lifecycle，则sup和sub都调用
   static Effect<T> mergeEffectsExcludeLifecycle<T extends K, K>(Effect<K> sup,
@@ -40,6 +39,4 @@ class ReduxUtil {
               /// no subEffect
               return null;
             };
-
-
 }

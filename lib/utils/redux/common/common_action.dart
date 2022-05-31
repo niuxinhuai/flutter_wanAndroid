@@ -1,6 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
 
-/// Created by cnting on 2020-03-17
 ///
 
 enum CommonAction {
@@ -36,5 +35,4 @@ class CommonActionCreator {
   static Action onPageHide() {
     return const Action(CommonAction.onPageHide);
   }
-
 }

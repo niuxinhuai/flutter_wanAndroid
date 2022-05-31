@@ -7,7 +7,6 @@ import 'package:flutter_boost/flutter_boost.dart';
 
 import 'common/common_action.dart';
 
-/// Created by cnting on 2020-03-23
 /// 结合 TickerProviderStateMixin 、 WidgetsBindingObserverMixin（软件位于前后台）、PageVisibilityObserver（监听页面可见）
 
 mixin ZMTickerProviderAndWidgetsBindingMixin<T> on Component<T> {
@@ -21,7 +20,7 @@ class _BothState<T> extends ComponentState<T>
     with
         TempSingleTickerProviderStateMixin<T>,
         PageVisibilityObserver,
-        WidgetsBindingObserver{
+        WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -69,8 +68,8 @@ class _BothState<T> extends ComponentState<T>
 
   @override
   void onForeground() {
-    ctx.onLifecycle(LifecycleCreator.didChangeAppLifecycleState(
-        AppLifecycleState.resumed));
+    ctx.onLifecycle(
+        LifecycleCreator.didChangeAppLifecycleState(AppLifecycleState.resumed));
     // ctx.dispatch(CommonActionCreator.onAppDidEnterForeground());
   }
 }
