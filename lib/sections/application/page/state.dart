@@ -3,6 +3,7 @@ import 'package:flutter/material.dart' as P;
 import 'package:flutter_wanandroid/sections/home/page/home/page.dart';
 import 'package:flutter_wanandroid/sections/knowledge/page/knowledge/page.dart';
 import 'package:flutter_wanandroid/sections/navigation/page/navigation/page.dart';
+import 'package:flutter_wanandroid/sections/project/page/project/page.dart';
 import 'package:flutter_wanandroid/sections/wechat/page/wechat/page.dart';
 import 'package:flutter_wanandroid/widget/segment.dart';
 
@@ -35,7 +36,7 @@ ApplicationState initState(Map<String, dynamic>? args) {
     childWidget: NavigationArticlePage().buildPage({}),
   ));
   children.add(KeepAliveWidget(
-    childWidget: P.Text('项目'),
+    childWidget: ProjectArticlePage().buildPage({}),
   ));
 
   return ApplicationState()..children = children;
