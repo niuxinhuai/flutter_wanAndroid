@@ -52,7 +52,7 @@ class Uri {
   static String searchJson(int page) => "article/query/$page/json";
 
   ///热搜
-  static const String hotSearch = "/hotkey/json";
+  static const String hotSearch = "hotkey/json";
 
   ///登录
   ///方法：POST
