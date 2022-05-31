@@ -75,4 +75,27 @@ class CommonService {
   static Future<NavigationArticleWrap> getNavigationData() =>
       ServiceHelper.get(Uri.navigationJson)
           .then((json) => NavigationArticleWrap.fromJson(json));
+
+  ///项目
+  static Future<List<KnowledgeChildItem>> getProgectArticle() =>
+      ServiceHelper.get(Uri.projectTree).then((json) {
+        List<KnowledgeChildItem> items = [];
+        List<dynamic> list = json['data'];
+        for (dynamic map in list) {
+          items.add(KnowledgeChildItem.fromJson(map));
+        }
+        return items;
+      });
+
+  ///微信公众号下的文章
+  static Future<List<HomeArticleBean>> getProjectUserArticle(
+          int page, int id) =>
+      ServiceHelper.get(Uri.projectList(page, id)).then((json) {
+        List<HomeArticleBean> items = [];
+        List<dynamic> list = json['data']['datas'];
+        for (dynamic map in list) {
+          items.add(HomeArticleBean.fromJson(map));
+        }
+        return items;
+      });
 }
