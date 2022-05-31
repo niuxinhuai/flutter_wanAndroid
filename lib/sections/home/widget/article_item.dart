@@ -26,26 +26,47 @@ class ArticleItemWidget extends StatelessWidget {
               child: ArticleHeaderWidget(
                 bean: articleBean,
               )),
-          Text(
-            StringUtils.stripHtmlIfNeeded(articleBean!.title ?? ""),
-            maxLines: 2,
-            style: GpOtherTheme.size16(context),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (articleBean?.envelopePic != null &&
+                  articleBean!.envelopePic!.isNotEmpty)
+                Container(
+                  padding: EdgeInsets.only(right: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    child: CachedNetworkImage(
+                      imageUrl: articleBean!.envelopePic!,
+                      fit: BoxFit.fill,
+                      width: 120,
+                      height: 200,
+                    ),
+                  ),
+                ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      StringUtils.stripHtmlIfNeeded(articleBean!.title ?? ""),
+                      maxLines: 2,
+                      style: GpOtherTheme.size16(context),
+                    ),
+                    if (articleBean?.desc != null)
+                      Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Text(
+                          StringUtils.stripHtmlIfNeeded(articleBean!.desc!)
+                              .trim(),
+                          maxLines: 3,
+                          style: GpOtherTheme.size14(context),
+                        ),
+                      ),
+                  ],
+                ),
+              )
+            ],
           ),
-          if (articleBean?.desc != null)
-            Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: Text(
-                StringUtils.stripHtmlIfNeeded(articleBean!.desc!).trim(),
-                maxLines: 3,
-                style: GpOtherTheme.size14(context),
-              ),
-            ),
-          if (articleBean?.envelopePic != null &&
-              articleBean!.envelopePic!.isNotEmpty)
-            CachedNetworkImage(
-              imageUrl: articleBean!.envelopePic!,
-              width: 200,
-            ),
           Padding(
             padding: EdgeInsets.only(top: 15, bottom: 15),
             child: ArticleBottomWidget(

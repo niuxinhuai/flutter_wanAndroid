@@ -60,4 +60,4 @@ class KnowledgeChildItem {
   toJson() => _$KnowledgeChildItemToJson(this);
 }
 
-enum ArticlePageType { knowledge, wxArticle }
+enum ArticlePageType { knowledge, wxArticle, project }
