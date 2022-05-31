@@ -19,6 +19,7 @@ Effect<KnowledgeArticleSegmentState>? buildEffect() {
 void _initState(
     Action action, Context<KnowledgeArticleSegmentState> ctx) async {
   List<HomeArticleBean> items = [];
+
   if (ctx.state.type == ArticlePageType.knowledge) {
     items = await CommonService.getKnowledgeUserArticle(
         ctx.state.page, ctx.state.cid);
@@ -27,6 +28,8 @@ void _initState(
   } else if (ctx.state.type == ArticlePageType.project) {
     items = await CommonService.getProjectUserArticle(
         ctx.state.page, ctx.state.cid);
+  } else if (ctx.state.type == ArticlePageType.search) {
+    items = await CommonService.getSearch(ctx.state.page, ctx.state.keywords!);
   }
 
   ctx.dispatch(KnowledgeArticleSegmentActionCreator.didFetchDataAction(items));

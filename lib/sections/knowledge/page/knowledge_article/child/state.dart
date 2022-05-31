@@ -12,6 +12,7 @@ class KnowledgeArticleSegmentState
   ArticlePageType type = ArticlePageType.knowledge;
   RefreshController? refreshController;
   bool? loadNoMoreData;
+  String? keywords; //只在搜索下才有
 
   @override
   KnowledgeArticleSegmentState clone() {
@@ -22,18 +23,26 @@ class KnowledgeArticleSegmentState
       ..items = items
       ..refreshController = refreshController
       ..loadNoMoreData = loadNoMoreData
-      ..type = type;
+      ..type = type
+      ..keywords = keywords;
   }
 }
 
 KnowledgeArticleSegmentState initState(Map<String, dynamic>? args) {
-  final KnowledgeChildItem childItem =
-      KnowledgeChildItem.fromJson(args!["params"]);
-  final ArticlePageType type = args["type"];
+  final ArticlePageType type = args!["type"];
+  KnowledgeChildItem childItem = KnowledgeChildItem();
+  String keywords = "";
+  if (type == ArticlePageType.search) {
+    keywords = args["keywords"];
+  } else {
+    childItem = KnowledgeChildItem.fromJson(args["params"]);
+  }
+
   return KnowledgeArticleSegmentState()
     ..item = childItem
     ..cid = childItem.id ?? 0
     ..refreshController = RefreshController(initialRefresh: false)
     ..loadNoMoreData = false
-    ..type = type;
+    ..type = type
+    ..keywords = keywords;
 }
