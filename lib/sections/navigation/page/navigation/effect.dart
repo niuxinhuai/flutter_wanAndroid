@@ -1,4 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter_wanandroid/helper/router.dart';
+import 'package:flutter_wanandroid/helper/router_helper.dart';
 import 'package:flutter_wanandroid/repository/services/common_service.dart';
 import 'package:flutter_wanandroid/sections/navigation/models/navigation.dart';
 import 'action.dart';
@@ -18,6 +20,8 @@ void _initState(Action action, Context<NavigationArticleState> ctx) async {
 }
 
 ///点击搜索
-void _onTapSearch(Action action, Context<NavigationArticleState> ctx) {}
+void _onTapSearch(Action action, Context<NavigationArticleState> ctx) {
+  ARouter.open(ctx.context, RouterKeys.search);
+}
 
 void _onAction(Action action, Context<NavigationArticleState> ctx) {}
