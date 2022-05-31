@@ -4,6 +4,7 @@ import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
 import 'package:flutter_wanandroid/sections/knowledge/models/knowledge/knowledge.dart';
 import 'package:flutter_wanandroid/sections/navigation/models/navigation.dart';
+import 'package:flutter_wanandroid/sections/search/models/hot_search.dart';
 
 class CommonService {
   ///首页banner
@@ -91,6 +92,23 @@ class CommonService {
   static Future<List<HomeArticleBean>> getProjectUserArticle(
           int page, int id) =>
       ServiceHelper.get(Uri.projectList(page, id)).then((json) {
+        List<HomeArticleBean> items = [];
+        List<dynamic> list = json['data']['datas'];
+        for (dynamic map in list) {
+          items.add(HomeArticleBean.fromJson(map));
+        }
+        return items;
+      });
+
+  ///热搜
+  static Future<SearchWrap> getHotSearch() => ServiceHelper.get(Uri.hotSearch)
+      .then((json) => SearchWrap.fromJson(json));
+
+  ///搜索
+  ///支持多个关键词，用空格隔开
+  static Future<List<HomeArticleBean>> getSearch(int page, String keyWords) =>
+      ServiceHelper.post(Uri.searchJson(page), data: {'k': keyWords})
+          .then((json) {
         List<HomeArticleBean> items = [];
         List<dynamic> list = json['data']['datas'];
         for (dynamic map in list) {
