@@ -50,8 +50,10 @@ dependencies:
   html_unescape: ^2.0.0
 
   #webview
-#  flutter_webview_plugin: ^0.4.0
   webview_flutter: ^3.0.4
+
+  #sqflite
+  sqflite: ^2.0.2
 
   flutter_boost:
     git:
