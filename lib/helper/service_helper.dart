@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_wanandroid/constants/uri.dart';
+import 'package:flutter_wanandroid/helper/user.dart';
 
 class ServiceHelper {
   static Dio _dio = Dio(BaseOptions(
@@ -20,7 +21,7 @@ class ServiceHelper {
   }) {
     return _dio
         .post<T>(path,
-            options: options,
+            options: options ?? _getOptions(),
             data: data,
             cancelToken: cancelToken,
             onSendProgress: onSendProgress,
@@ -38,7 +39,7 @@ class ServiceHelper {
     return _dio
         .get<T>(path,
             queryParameters: queryParameters,
-            options: options,
+            options: options ?? _getOptions(),
             cancelToken: cancelToken,
             onReceiveProgress: onReceiveProgress)
         .then((value) => value.data!);
@@ -66,5 +67,14 @@ class ServiceHelper {
   static Future<T> upload<T>(String urlPath, Map<String, dynamic> data) {
     var formData = FormData.fromMap(data);
     return _dio.post<T>(urlPath, data: formData).then((value) => value.data!);
+  }
+
+  static Options? _getOptions() {
+    Map<String, String>? map = UserDefault.getHeader();
+    if (map != null) {
+      return Options(headers: map);
+    } else {
+      return null;
+    }
   }
 }
