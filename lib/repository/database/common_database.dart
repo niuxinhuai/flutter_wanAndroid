@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter_wanandroid/models/db/db_model.dart';
 import 'package:flutter_wanandroid/repository/database/database_helper.dart';
 import 'package:flutter_wanandroid/repository/database/database_keys.dart';
+import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CommonDb {
@@ -45,5 +46,62 @@ class CommonDb {
   ///清空历史搜索表
   static Future<int> deleteUserSearchHistory() {
     return DbHelper.instance.delete(TUserSearchHistoryProperty.TABLE_NAME);
+  }
+
+  ///更新收藏文章id
+  static Future<int> updateCollectArticleId(int id) {
+    return DbHelper.instance.insert(TUserCollectProperty.TABLE_NAME, {"id": id},
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  ///取消收藏单条文章
+  static Future<int> unCollectArticleId(int id) {
+    return DbHelper.instance
+        .delete(TUserCollectProperty.TABLE_NAME, where: "id=$id");
+  }
+
+  ///当前文章是否被收藏
+  static Future<bool> articleHasCollect(int id) {
+    return DbHelper.instance
+        .query(TUserCollectProperty.TABLE_NAME, where: "id=$id")
+        .then((items) {
+      return items.length != 0;
+    });
+  }
+
+  ///获取所有的收藏列表
+  static Future<List<int>> getAllArticleCollect() {
+    return DbHelper.instance
+        .query(TUserCollectProperty.TABLE_NAME)
+        .then((items) {
+      List<int> list = [];
+      if (items.length != 0) {
+        for (Map<String, dynamic> map in items) {
+          if (map.keys.contains("id")) {
+            list.add(map["id"]);
+          }
+        }
+      }
+      return list;
+    });
+  }
+
+  ///删除所有收藏
+  static Future<int> deleteUserCollectHistory() {
+    return DbHelper.instance.delete(TUserCollectProperty.TABLE_NAME);
+  }
+
+  ///将同步过来的收藏列表的数据存入本地数据库
+  static Future<bool> inserCollecttDataFromSync(List<HomeArticleBean>? list) {
+    return DbHelper.instance.transaction<bool>((txn) async {
+      var batch = txn.batch();
+      for (HomeArticleBean log in list!) {
+        batch.insert(TUserCollectProperty.TABLE_NAME,
+            {TUserCollectProperty.cId: log.originId},
+            conflictAlgorithm: ConflictAlgorithm.replace);
+      }
+      List result = await batch.commit();
+      return result.isNotEmpty;
+    });
   }
 }
