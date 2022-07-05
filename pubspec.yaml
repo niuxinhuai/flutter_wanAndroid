@@ -28,6 +28,9 @@ dependencies:
     #文件路径操作
   path: ^1.8.0
 
+  #通知
+  event_bus: ^2.0.0
+
       #下拉刷新
   pull_to_refresh: ^2.0.0
 
@@ -94,6 +97,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
