@@ -1,14 +1,10 @@
+
 import 'package:fish_redux/fish_redux.dart';
-//import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' as P;
 import 'package:flutter_wanandroid/helper/router.dart';
 import 'package:flutter_wanandroid/helper/router_helper.dart';
 import 'package:flutter_wanandroid/repository/services/common_service.dart';
 import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
-import 'package:flutter_wanandroid/utils/string_util.dart';
-import 'package:flutter_wanandroid/widget/webview.dart';
-import 'package:html_unescape/html_unescape.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -20,12 +16,13 @@ Effect<HomeState>? buildEffect() {
     HomeAction.onTapBanner: _onTapBanner,
     HomeAction.onTapCell: _onTapCell,
     HomeAction.onLoading: _onLoading,
+    HomeAction.onTapLeading: _onTapLeading,
   });
 }
 
 void _initState(Action action, Context<HomeState> ctx) async {
-  HomeBannerWrap? bannerWrap = await CommonService.getHomeBanner();
 
+  HomeBannerWrap? bannerWrap = await CommonService.getHomeBanner();
   HomeArticleWrap? articleWrap =
       await CommonService.getHomeArticle(page: ctx.state.page);
 
@@ -65,6 +62,10 @@ void _onLoading(Action action, Context<HomeState> ctx) async {
   HomeArticleWrap? articleWrap =
       await CommonService.getHomeArticle(page: ctx.state.page);
   ctx.dispatch(HomeActionCreator.didLoadingAction(articleWrap));
+}
+
+void _onTapLeading(Action action, Context<HomeState> ctx) {
+  ctx.state.globalKey.currentState?.openDrawer();
 }
 
 void _onAction(Action action, Context<HomeState> ctx) {}

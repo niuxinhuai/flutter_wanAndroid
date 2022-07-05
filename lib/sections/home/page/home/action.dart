@@ -4,11 +4,13 @@ import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
 
 enum HomeAction {
   action,
+  onTapLeading,
   onLoading,
   onTapBanner,
   onTapCell,
   didFetch,
-  didLoading
+  didLoading,
+  didRefresh,
 }
 
 class HomeActionCreator {
@@ -18,6 +20,10 @@ class HomeActionCreator {
 
   static Action onLoadingAction() {
     return const Action(HomeAction.onLoading);
+  }
+
+  static Action ononTapLeadingAction() {
+    return const Action(HomeAction.onTapLeading);
   }
 
   static Action onTapBannerAction(HomeBannerBean bannerBean) {
@@ -35,5 +41,9 @@ class HomeActionCreator {
 
   static Action didLoadingAction(HomeArticleWrap? wrap) {
     return Action(HomeAction.didLoading, payload: wrap);
+  }
+
+  static Action didRefreshAction() {
+    return const Action(HomeAction.didRefresh);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -9,6 +10,7 @@ class HomeState extends ItemListLike implements Cloneable<HomeState> {
   int page = 0;
   RefreshController? refreshController;
   bool? loadNoMoreData;
+  GlobalKey<ScaffoldState> globalKey = GlobalKey();
 
   @override
   HomeState clone() {
@@ -17,7 +19,8 @@ class HomeState extends ItemListLike implements Cloneable<HomeState> {
       ..beans = beans
       ..page = page
       ..refreshController = refreshController
-      ..loadNoMoreData = loadNoMoreData;
+      ..loadNoMoreData = loadNoMoreData
+      ..globalKey = globalKey;
   }
 
   @override

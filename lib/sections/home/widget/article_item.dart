@@ -9,8 +9,11 @@ import 'package:flutter_wanandroid/widget/card.dart';
 
 class ArticleItemWidget extends StatelessWidget {
   final HomeArticleBean? articleBean;
+  final Function(int)? callBack;
+  final bool? isFromCollect;
 
-  ArticleItemWidget({this.articleBean});
+  ArticleItemWidget(
+      {this.articleBean, this.callBack, this.isFromCollect = false});
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +74,13 @@ class ArticleItemWidget extends StatelessWidget {
             padding: EdgeInsets.only(top: 15, bottom: 15),
             child: ArticleBottomWidget(
               bean: articleBean,
+              isFromCollect: isFromCollect,
               iconData: Icons.favorite_border,
-              callBack: () {},
+              callBack: (int id) {
+                if (callBack != null) {
+                  callBack!(id);
+                }
+              },
             ),
           )
         ],

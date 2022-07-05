@@ -10,6 +10,7 @@ Reducer<HomeState>? buildReducer() {
       HomeAction.action: _onAction,
       HomeAction.didFetch: _didFetchAction,
       HomeAction.didLoading: _didLoading,
+      HomeAction.didRefresh: _didRefresh,
     },
   );
 }
@@ -34,6 +35,11 @@ HomeState _didLoading(HomeState state, Action action) {
     newState.refreshController!.loadNoData();
     newState.loadNoMoreData = true;
   }
+  return newState;
+}
+
+HomeState _didRefresh(HomeState state, Action action) {
+  final HomeState newState = state.clone();
   return newState;
 }
 

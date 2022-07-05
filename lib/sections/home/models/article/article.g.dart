@@ -65,6 +65,7 @@ HomeArticleBean _$HomeArticleBeanFromJson(Map json) => HomeArticleBean()
   ..niceDate = json['niceDate'] as String?
   ..niceShareDate = json['niceShareDate'] as String?
   ..origin = json['origin'] as String?
+  ..originId = json['originId'] as int?
   ..prefix = json['prefix'] as String?
   ..projectLink = json['projectLink'] as String?
   ..publishTime = json['publishTime'] as int?
@@ -103,6 +104,7 @@ Map<String, dynamic> _$HomeArticleBeanToJson(HomeArticleBean instance) =>
       'niceDate': instance.niceDate,
       'niceShareDate': instance.niceShareDate,
       'origin': instance.origin,
+      'originId': instance.originId,
       'prefix': instance.prefix,
       'projectLink': instance.projectLink,
       'publishTime': instance.publishTime,
