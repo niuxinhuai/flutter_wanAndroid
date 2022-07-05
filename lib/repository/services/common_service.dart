@@ -1,8 +1,13 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter_wanandroid/constants/uri.dart';
 import 'package:flutter_wanandroid/helper/service_helper.dart';
+import 'package:flutter_wanandroid/models/simple_model.dart';
 import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
 import 'package:flutter_wanandroid/sections/knowledge/models/knowledge/knowledge.dart';
+import 'package:flutter_wanandroid/sections/login/models/login.dart';
 import 'package:flutter_wanandroid/sections/navigation/models/navigation.dart';
 import 'package:flutter_wanandroid/sections/search/models/hot_search.dart';
 
@@ -11,6 +16,9 @@ class CommonService {
   static Future<HomeBannerWrap?> getHomeBanner() =>
       ServiceHelper.get(Uri.home_banner)
           .then((json) => HomeBannerWrap.fromJson(json));
+
+  static Future<dynamic> getVideoSource() =>
+      ServiceHelper.get("video/auth/4").then((value) => jsonDecode(value));
 
   ///首页文章
   static Future<HomeArticleWrap?> getHomeArticle({int page = 0}) =>
@@ -116,4 +124,56 @@ class CommonService {
         }
         return items;
       });
+
+  ///登录
+  static Future<Response> login(String username, String password) async {
+    FormData formData = new FormData.fromMap({
+      "username": "$username",
+      "password": "$password",
+    });
+    return await Dio().post(Uri.baseUri + Uri.login, data: formData);
+  }
+
+  ///注册
+  static Future<Response> register(
+      String username, String password, String repassword) async {
+    FormData formData = new FormData.fromMap({
+      "username": "$username",
+      "password": "$password",
+      "repassword": "$password",
+    });
+    return await Dio().post(Uri.baseUri + Uri.register, data: formData);
+  }
+
+  ///退出登录
+  static Future<LoginWrap?> logout() async {
+    return await ServiceHelper.get(Uri.logout)
+        .then((value) => LoginWrap.fromJson(value));
+  }
+
+  ///收藏站内文章
+  static Future<SimpleModel> collectInArticle(int id) async {
+    return ServiceHelper.post(Uri.collectIn(id))
+        .then((value) => SimpleModel.fromJson(value));
+  }
+
+  ///收藏站外的文章
+  static Future<SimpleModel> collectOutArticle(
+      String title, String author, String link) async {
+    return ServiceHelper.post(Uri.collectOut,
+            data: {"title": title, "author": author, "link": link})
+        .then((value) => SimpleModel.fromJson(value));
+  }
+
+  ///取消收藏
+  static Future<SimpleModel> unCollectArticle(int id) async {
+    return ServiceHelper.post(Uri.unCollect(id))
+        .then((value) => SimpleModel.fromJson(value));
+  }
+
+  ///收藏列表
+  static Future<HomeArticleWrap> collectList(int page, int page_size) async {
+    return ServiceHelper.get(Uri.collectList(page, page_size))
+        .then((value) => HomeArticleWrap.fromJson(value));
+  }
 }
