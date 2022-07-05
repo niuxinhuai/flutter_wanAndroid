@@ -69,4 +69,21 @@ class Uri {
   ///退出登录
   ///方法：GET
   static const String logout = "user/logout/json";
+
+  ///收藏站内文章
+  ///方法：POST
+  static String collectIn(int id) => "lg/collect/$id/json";
+
+  ///收藏站外文章
+  ///方法：POST
+  ///title，author，link
+  static const String collectOut = "lg/collect/add/json";
+
+  ///收藏文章列表
+  ///方法：GET
+  static String collectList(int page, int page_size) =>
+      "lg/collect/list/$page/json?page_size=$page_size";
+
+  ///取消收藏
+  static String unCollect(int id) => "lg/uncollect_originId/$id/json";
 }
