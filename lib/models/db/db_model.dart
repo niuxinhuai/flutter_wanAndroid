@@ -18,3 +18,23 @@ class UserSearchLog {
 
   toJson() => _$UserSearchLogToJson(this);
 }
+
+@JsonSerializable()
+class UserWeatherLog {
+  UserWeatherLog();
+  @JsonKey(name: TUserWeatherProperty.cId)
+  String? city_id;
+  @JsonKey(name: TUserWeatherProperty.cCity)
+  String? city;
+  @JsonKey(name: TUserWeatherProperty.cLat)
+  String? lat;
+  @JsonKey(name: TUserWeatherProperty.cLng)
+  String? lng;
+  @JsonKey(name: TUserWeatherProperty.cInd)
+  int? ind;
+
+  factory UserWeatherLog.fromJson(Map<String, dynamic> json) =>
+      _$UserWeatherLogFromJson(json);
+
+  toJson() => _$UserWeatherLogToJson(this);
+}
