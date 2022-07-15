@@ -8,6 +8,9 @@ import 'package:flutter_wanandroid/sections/login/page/login/page.dart';
 import 'package:flutter_wanandroid/sections/login/page/register/page.dart';
 import 'package:flutter_wanandroid/sections/search/page/result/page.dart';
 import 'package:flutter_wanandroid/sections/search/page/search/page.dart';
+import 'package:flutter_wanandroid/sections/weather/page/home/state.dart';
+import 'package:flutter_wanandroid/sections/weather/page/weather/page.dart';
+import 'package:flutter_wanandroid/sections/weather/page/home/page.dart';
 
 class RouterHelper {
   static Map<String, FishRedux.Page> routers = {
@@ -20,6 +23,8 @@ class RouterHelper {
     RouterKeys.login: LoginPage(),
     RouterKeys.register: RegisterPage(),
     RouterKeys.collect: FavoriteArticlePage(),
+    RouterKeys.weather: WeatherPage(),
+    RouterKeys.weather_segment: WeatherSegmentPage(),
   };
 }
 
@@ -51,4 +56,10 @@ class RouterKeys {
 
   //收藏
   static const collect = "collect";
+
+  //天气
+  static const weather = "weather";
+
+  //天气列表
+  static const weather_segment = "weather_segment";
 }
