@@ -14,7 +14,7 @@ class CommonDb {
     return DbHelper.instance.transaction((txn) async {
       var batch = txn.batch();
       for (Map<String, dynamic> table in tables) {
-        if (((table['name'] ?? '') as String).startsWith('u_')) {
+        if (((table['name'] ?? '') as String).startsWith('t_')) {
           batch.delete(table['name']);
         }
       }
@@ -98,6 +98,53 @@ class CommonDb {
       for (HomeArticleBean log in list!) {
         batch.insert(TUserCollectProperty.TABLE_NAME,
             {TUserCollectProperty.cId: log.originId},
+            conflictAlgorithm: ConflictAlgorithm.replace);
+      }
+      List result = await batch.commit();
+      return result.isNotEmpty;
+    });
+  }
+
+  ///获取所有weather信息
+  static Future<List<UserWeatherLog>> getAllWeather({String sc = "desc"}) {
+    return DbHelper.instance
+        .query(TUserWeatherProperty.TABLE_NAME,
+            orderBy: "${TUserWeatherProperty.cInd} $sc")
+        .then((items) {
+      List<UserWeatherLog> logs = [];
+      items.forEach((element) => logs.add(UserWeatherLog.fromJson(element)));
+      return logs;
+    });
+  }
+
+  ///删除某条天气信息
+  static Future<int> deleteWeatherByCity(String id) {
+    String query = "$id";
+    return DbHelper.instance.delete(TUserWeatherProperty.TABLE_NAME,
+        where: "${TUserWeatherProperty.cId}=?", whereArgs: [query]);
+  }
+
+  ///更新天气记录
+  static Future<int> updateUserWeatherLog(UserWeatherLog log) {
+    return DbHelper.instance.insert(
+        TUserWeatherProperty.TABLE_NAME, log.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  ///将天气数据存入本地数据库
+  static Future<bool> inserWeatherData(List<UserWeatherLog> list) {
+    return DbHelper.instance.transaction<bool>((txn) async {
+      var batch = txn.batch();
+      for (UserWeatherLog log in list) {
+        batch.insert(
+            TUserWeatherProperty.TABLE_NAME,
+            {
+              TUserWeatherProperty.cId: log.city_id,
+              TUserWeatherProperty.cCity: log.city,
+              TUserWeatherProperty.cLat: log.lat,
+              TUserWeatherProperty.cLng: log.lng,
+              TUserWeatherProperty.cInd: log.ind
+            },
             conflictAlgorithm: ConflictAlgorithm.replace);
       }
       List result = await batch.commit();
