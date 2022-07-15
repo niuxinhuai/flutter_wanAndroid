@@ -62,7 +62,7 @@ class _ArticleBottomWidgetState extends State<ArticleBottomWidget> {
     if (id != null) {
       SimpleModel model = hasCollect
           ? await CommonService.unCollectArticle(id!)
-          : await CommonService.collectInArticle(id!);
+          : await collectArticle();
       if (model.errorCode == 0) {
         hasCollect = !hasCollect;
         if (hasCollect) {
@@ -75,12 +75,30 @@ class _ArticleBottomWidgetState extends State<ArticleBottomWidget> {
         }
 
         ///刷新界面
-        setState(() {});
+        if (mounted) {
+          setState(() {});
+        }
       } else {
         Toast.toast(context,
             model.errorMsg ?? (hasCollect ? "取消收藏失败，请重试" : "收藏失败，请重试"));
       }
     }
+  }
+
+  Future<SimpleModel> collectArticle() async {
+    if (widget.bean!.link != null &&
+        widget.bean!.link!.contains("www.wanandroid.com")) {
+      return await CommonService.collectInArticle(id!);
+    }
+    String? title = widget.bean!.title;
+    String? author = widget.bean!.author;
+    String? link = widget.bean!.link;
+    if (title != null && author != null && link != null) {
+      return await CommonService.collectOutArticle(title, author, link);
+    }
+    return SimpleModel()
+      ..errorCode = -1
+      ..errorMsg = "外部文章收藏失败";
   }
 
   @override

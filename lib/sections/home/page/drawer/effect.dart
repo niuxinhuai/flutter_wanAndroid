@@ -39,13 +39,14 @@ void _onTapSegment(Action action, Context<HomeDrawerState> ctx) async {
     LoginWrap? wrap = await UserDefault.logout();
     if (wrap != null && wrap.errorCode == 0) {
       UserDefault.clear();
-      await CommonDb.deleteUserSearchHistory();
-      await CommonDb.deleteUserCollectHistory();
+      await CommonDb.clearAllDbs();
       eventBus.fire(LoginWrap());
     } else {
       Toast.toast(ctx.context, "退出失败，请重试");
     }
   } else if (value == "登录") {
     ARouter.open(ctx.context, RouterKeys.login);
+  } else if (value == "天气") {
+    ARouter.open(ctx.context, RouterKeys.weather_segment);
   }
 }
