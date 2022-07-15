@@ -1,9 +1,38 @@
+import 'package:flutter/material.dart';
+
 class TimeUtil {
   TimeUtil._();
 
   static int getApartSeconds() {
     DateTime now = DateTime.now();
     return now.millisecondsSinceEpoch ~/ 1000;
+  }
+
+  static bool isNowHour(String hour) {
+    int hourTime = int.tryParse(hour) ?? 0;
+    return DateTime.now().hour == hourTime;
+  }
+
+  static bool isToday(int? mill) {
+    if (mill == null) return false;
+    return isTodayByDateTime(DateTime.fromMillisecondsSinceEpoch(mill));
+  }
+
+  static bool isSameDay(int mill1, int mill2) {
+    return DateUtils.isSameDay(DateTime.fromMillisecondsSinceEpoch(mill1),
+        DateTime.fromMillisecondsSinceEpoch(mill2));
+  }
+
+  static bool isTodayByDateTime(DateTime date) {
+    return DateUtils.isSameDay(DateTime.now(), date);
+  }
+
+  static bool isYesterday(DateTime time) {
+    DateTime now = DateTime.now();
+    DateTime yesterday = DateTime(now.year, now.month, now.day - 1);
+    return yesterday.year == time.year &&
+        yesterday.month == time.month &&
+        yesterday.day == time.day;
   }
 
   static DateTime formatExpiresTime(String str) {
