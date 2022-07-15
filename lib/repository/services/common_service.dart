@@ -10,6 +10,8 @@ import 'package:flutter_wanandroid/sections/knowledge/models/knowledge/knowledge
 import 'package:flutter_wanandroid/sections/login/models/login.dart';
 import 'package:flutter_wanandroid/sections/navigation/models/navigation.dart';
 import 'package:flutter_wanandroid/sections/search/models/hot_search.dart';
+import 'package:flutter_wanandroid/sections/weather/models/place.dart';
+import 'package:flutter_wanandroid/sections/weather/models/weather.dart';
 
 class CommonService {
   ///首页banner
@@ -175,5 +177,40 @@ class CommonService {
   static Future<HomeArticleWrap> collectList(int page, int page_size) async {
     return ServiceHelper.get(Uri.collectList(page, page_size))
         .then((value) => HomeArticleWrap.fromJson(value));
+  }
+
+  ///天气综合数据
+  static Future<WeatherStage> getWeather(double lat, double lng) {
+    return Dio()
+        .get(Uri.caiyun_base_uri + Uri.getWeather(lat, lng))
+        .then((value) => WeatherStage.fromJson(value.data));
+  }
+
+  ///实时天气
+  static Future<WeatherStage> getWeatherRealTime(double lat, double lng) {
+    return Dio()
+        .get(Uri.caiyun_base_uri + Uri.weatherRealTime(lat, lng))
+        .then((value) => WeatherStage.fromJson(value.data));
+  }
+
+  ///未来几天的天气
+  static Future<WeatherStage> getWeatherDaily(double lat, double lng) {
+    return Dio()
+        .get(Uri.caiyun_base_uri + Uri.weatherDaily(lat, lng))
+        .then((value) => WeatherStage.fromJson(value.data));
+  }
+
+  ///未来24小时的天气
+  static Future<WeatherStage> getWeatherHourly(double lat, double lng) {
+    return Dio()
+        .get(Uri.caiyun_base_uri + Uri.weatherHourly(lat, lng))
+        .then((value) => WeatherStage.fromJson(value.data));
+  }
+
+  ///获取地方信息
+  static Future<PlaceStage> getWeatherPlace(String query) {
+    return Dio()
+        .get(Uri.caiyun_base_uri + Uri.weatherPlace(query))
+        .then((value) => PlaceStage.fromJson(value.data));
   }
 }
