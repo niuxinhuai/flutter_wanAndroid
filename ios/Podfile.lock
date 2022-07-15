@@ -1,4 +1,15 @@
 PODS:
+  - AMap3DMap (9.3.0):
+    - AMapFoundation (~> 1.7.0)
+  - amap_flutter_location (0.0.1):
+    - AMapLocation
+    - Flutter
+  - amap_flutter_map (0.0.1):
+    - AMap3DMap
+    - Flutter
+  - AMapFoundation (1.7.0)
+  - AMapLocation (2.9.0):
+    - AMapFoundation (>= 1.7.0)
   - Flutter (1.0.0)
   - flutter_boost (0.0.2):
     - Flutter
@@ -16,6 +27,8 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - amap_flutter_location (from `.symlinks/plugins/amap_flutter_location/ios`)
+  - amap_flutter_map (from `.symlinks/plugins/amap_flutter_map/ios`)
   - Flutter (from `Flutter`)
   - flutter_boost (from `.symlinks/plugins/flutter_boost/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
@@ -24,10 +37,18 @@ DEPENDENCIES:
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AMap3DMap
+    - AMapFoundation
+    - AMapLocation
   trunk:
     - FMDB
 
 EXTERNAL SOURCES:
+  amap_flutter_location:
+    :path: ".symlinks/plugins/amap_flutter_location/ios"
+  amap_flutter_map:
+    :path: ".symlinks/plugins/amap_flutter_map/ios"
   Flutter:
     :path: Flutter
   flutter_boost:
@@ -42,6 +63,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
+  AMap3DMap: e429ea5e1d76b1793b75029db007241d67d2ebdf
+  amap_flutter_location: 44ff5beb64f42e0bf5feb402fe299dac0013af6f
+  amap_flutter_map: 979e54d227cedac6c7504a2151bfbf3bcf96760a
+  AMapFoundation: c14fcebd8e4267c593bd2e25067ac86b0ce64aba
+  AMapLocation: f5eb11e11c62f0f599f80b578eec8a1f70deb985
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_boost: 6a73c54e5654df180c2cc379045b8cba9746fc8a
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a

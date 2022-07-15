@@ -28,6 +28,16 @@
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>Allow Flutters</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>使用时再定位</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>常驻</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>使用一次啦</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
