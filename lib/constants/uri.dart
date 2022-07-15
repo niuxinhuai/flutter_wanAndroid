@@ -1,6 +1,11 @@
+import 'package:flutter_wanandroid/constants/key.dart';
+
 class Uri {
   ///base
   static const String baseUri = "https://www.wanandroid.com/";
+
+  ///彩云base
+  static const String caiyun_base_uri = "https://api.caiyunapp.com/";
 
   ///首页banner
   static const String home_banner = "banner/json";
@@ -86,4 +91,24 @@ class Uri {
 
   ///取消收藏
   static String unCollect(int id) => "lg/uncollect_originId/$id/json";
+
+  ///获取位置信息
+  static String weatherPlace(String query) =>
+      "v2/place?query=$query&token=${ConstantsKey.weatherToken}&lang=zh_CN";
+
+  ///获取准时天气信息
+  static String weatherRealTime(double lat, double lng) =>
+      "v2.6/${ConstantsKey.weatherToken}/$lng,$lat/realtime";
+
+  ///获取未来7天的天气数据
+  static String weatherDaily(double lat, double lng) =>
+      "v2.6/${ConstantsKey.weatherToken}/$lng,$lat/daily?dailysteps=7";
+
+  ///获取未来24小时天气
+  static String weatherHourly(double lat, double lng) =>
+      "v2.6/${ConstantsKey.weatherToken}/$lng,$lat/hourly?hourlysteps=24";
+
+  ///获取天气综合数据
+  static String getWeather(double lat, double lng) =>
+      "v2.6/${ConstantsKey.weatherToken}/$lng,$lat/weather?alert=true&dailysteps=7&hourlysteps=24";
 }
