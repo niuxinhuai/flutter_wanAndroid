@@ -91,7 +91,9 @@ class Uri {
 
   ///取消收藏
   static String unCollect(int id) => "lg/uncollect_originId/$id/json";
+}
 
+class WeatherUri extends Uri {
   ///获取位置信息
   static String weatherPlace(String query) =>
       "v2/place?query=$query&token=${ConstantsKey.weatherToken}&lang=zh_CN";

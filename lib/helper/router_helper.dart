@@ -1,4 +1,5 @@
 import 'package:fish_redux/fish_redux.dart' as FishRedux;
+import 'package:flutter_wanandroid/sections/amap/page/amap/page.dart';
 import 'package:flutter_wanandroid/sections/application/page/page.dart';
 import 'package:flutter_wanandroid/sections/favorite/page/page.dart';
 import 'package:flutter_wanandroid/sections/home/page/home/page.dart';
@@ -25,6 +26,7 @@ class RouterHelper {
     RouterKeys.collect: FavoriteArticlePage(),
     RouterKeys.weather: WeatherPage(),
     RouterKeys.weather_segment: WeatherSegmentPage(),
+    RouterKeys.amap: AMapHomePage(),
   };
 }
 
@@ -62,4 +64,7 @@ class RouterKeys {
 
   //天气列表
   static const weather_segment = "weather_segment";
+
+  //地图
+  static const amap = "amap";
 }

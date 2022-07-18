@@ -17,11 +17,11 @@ class HomeDrawerState implements Cloneable<HomeDrawerState> {
 }
 
 HomeDrawerState initState(Map<String, dynamic>? args) {
-  List<String> titles = ["我的收藏", "天气", "TODO", "设置", "关于", "登录"];
+  List<String> titles = ["我的收藏", "天气", "地图", "设置", "关于", "登录"];
   List<IconData> icons = [
     Icons.favorite_border,
     Icons.cloud,
-    Icons.message,
+    Icons.map,
     Icons.settings,
     Icons.watch_later,
     Icons.logout

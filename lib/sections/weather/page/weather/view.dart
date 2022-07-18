@@ -58,7 +58,8 @@ Widget _buildBody(
         _buildDailyWidget(state, dispatch, viewService),
 
         ///生活指数
-        _buildLifeWidget(state, dispatch, viewService)
+        _buildLifeWidget(state, dispatch, viewService),
+        _buildBottomIcon(viewService.context),
       ],
     ),
   );
@@ -390,6 +391,34 @@ Widget _buildLifeItem(DailyLifeModel model, BuildContext context) {
           ],
         )
       ],
+    ),
+  );
+}
+
+Widget _buildBottomIcon(BuildContext context) {
+  String str = '''
+  The
+  Weather
+  Channel
+  ''';
+  return Container(
+    width: double.infinity,
+    child: Center(
+      child: Container(
+        width: 50,
+        padding: EdgeInsets.only(
+          top: 10,
+          bottom: 0,
+        ),
+        margin: EdgeInsets.only(top: 30, bottom: 30),
+        color: Colors.grey,
+        alignment: Alignment.center,
+        child: Text(
+          str,
+          maxLines: 10,
+          style: GpOtherTheme.size12(context)!.copyWith(fontSize: 9),
+        ),
+      ),
     ),
   );
 }
