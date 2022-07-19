@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -73,6 +75,9 @@ class CommonColors {
             900: Color(0xFFff9025),
           },
         );
+
+  static Color get randomColor => Color.fromRGBO(
+      Random().nextInt(256), Random().nextInt(256), Random().nextInt(256), 1);
 
   static Color get backgroundColor =>
       _isDark ? const Color(0xFF323943) : const Color(0xFFF4F7FA);

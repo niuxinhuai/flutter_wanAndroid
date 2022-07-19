@@ -50,5 +50,7 @@ void _onTapSegment(Action action, Context<HomeDrawerState> ctx) async {
     ARouter.open(ctx.context, RouterKeys.weather_segment);
   } else if (value == "地图") {
     ARouter.open(ctx.context, RouterKeys.amap);
+  } else if (value == "日历") {
+    ARouter.open(ctx.context, RouterKeys.calendar);
   }
 }

@@ -1,4 +1,3 @@
-import 'package:amap_flutter_location/amap_location_option.dart';
 import 'package:amap_flutter_map/amap_flutter_map.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,7 @@
 import 'package:fish_redux/fish_redux.dart' as FishRedux;
 import 'package:flutter_wanandroid/sections/amap/page/amap/page.dart';
 import 'package:flutter_wanandroid/sections/application/page/page.dart';
+import 'package:flutter_wanandroid/sections/calendar/page/page.dart';
 import 'package:flutter_wanandroid/sections/favorite/page/page.dart';
 import 'package:flutter_wanandroid/sections/home/page/home/page.dart';
 import 'package:flutter_wanandroid/sections/home/page/webview/page.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_wanandroid/sections/login/page/login/page.dart';
 import 'package:flutter_wanandroid/sections/login/page/register/page.dart';
 import 'package:flutter_wanandroid/sections/search/page/result/page.dart';
 import 'package:flutter_wanandroid/sections/search/page/search/page.dart';
-import 'package:flutter_wanandroid/sections/weather/page/home/state.dart';
 import 'package:flutter_wanandroid/sections/weather/page/weather/page.dart';
 import 'package:flutter_wanandroid/sections/weather/page/home/page.dart';
 
@@ -27,6 +27,7 @@ class RouterHelper {
     RouterKeys.weather: WeatherPage(),
     RouterKeys.weather_segment: WeatherSegmentPage(),
     RouterKeys.amap: AMapHomePage(),
+    RouterKeys.calendar: CalendarPage(),
   };
 }
 
@@ -67,4 +68,7 @@ class RouterKeys {
 
   //地图
   static const amap = "amap";
+
+  //日历
+  static const calendar = "calendar";
 }
