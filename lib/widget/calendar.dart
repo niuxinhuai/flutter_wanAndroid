@@ -29,6 +29,10 @@ class _GpCalendarState extends State<GpCalendar> {
     if (widget.now == null) {
       nowTime = DateTime.now();
     }
+    Future.delayed(Duration.zero, () {
+      //在这里处理页面
+      _reset();
+    });
   }
 
   void _reset() {
@@ -37,10 +41,7 @@ class _GpCalendarState extends State<GpCalendar> {
     int days = CalendarUtil.getDays(widget.dateTime!);
     double width = widget.width!;
     double itemWidth = width / row.toDouble();
-    double itemHeight = 50.0;
-//    int today = DateTime.now().day;
 
-//    print(">>>>>>>>>>week:$weekday >>>>days:$days >>day:${DateTime.now().day}");
     int index = 0;
     if (weekday == row) weekday = 0;
     for (int i = 0; i < column; ++i) {
@@ -57,23 +58,44 @@ class _GpCalendarState extends State<GpCalendar> {
         bool isToday =
             (nowTime!.month == widget.dateTime!.month && nowTime!.day == index);
         bool canShow = (index >= 1 && index <= days);
+        String lunarStr = "";
+        if (canShow) {
+          DateTime lunarTime = DateTime(nowTime!.year, nowTime!.month, index);
+          LunarCalendar lunarCalendar = LunarCalendar(lunarTime);
+//          String time =
+//              '${lunarCalendar.getChinaMonthString()}月${LunarCalendar.getChinaDayString(lunarCalendar.day)}';
+          lunarStr = LunarCalendar.getChinaDayString(lunarCalendar.day);
+//          print(">>>>>>>>>>>>>>>>>>:$time ");
+        }
         Widget rowChildWidget = Container(
           width: itemWidth,
-          height: itemHeight,
+          height: itemWidth,
           decoration: isToday
               ? BoxDecoration(
                   color: Colors.red,
                   borderRadius:
-                      BorderRadius.all(Radius.circular(itemHeight / 2.0)))
+                      BorderRadius.all(Radius.circular(itemWidth / 2.0)))
               : null,
           alignment: Alignment.center,
           child: canShow
-              ? Text(
-                  "$index",
-                  style: GpOtherTheme.size17(context)!.copyWith(
-                      color: isToday
-                          ? CommonColors.onPrimaryTextColor
-                          : CommonColors.onSurfaceTextColor),
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "$index",
+                      style: GpOtherTheme.size17(context)?.copyWith(
+                          color: isToday
+                              ? CommonColors.onPrimaryTextColor
+                              : CommonColors.onSurfaceTextColor,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      lunarStr,
+                      style:
+                          GpOtherTheme.size12(context)?.copyWith(fontSize: 10),
+                    )
+                  ],
                 )
               : null,
         );
@@ -81,11 +103,13 @@ class _GpCalendarState extends State<GpCalendar> {
       }
       list.add(rowWidgets);
     }
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    _reset();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
