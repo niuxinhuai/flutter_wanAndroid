@@ -221,7 +221,7 @@ class CommonService {
     return Dio()
         .get(CalendarUri.getCalendarHolidays(year),
             options:
-                buildCacheOptions(Duration(days: 3), subKey: "calendar_$year"))
+                buildCacheOptions(Duration(days: 30), subKey: "calendar_$year"))
         .then((value) => CalendarWrap.fromJson(value.data));
   }
 }
