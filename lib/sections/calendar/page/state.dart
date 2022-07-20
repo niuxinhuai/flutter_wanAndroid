@@ -1,6 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_wanandroid/sections/calendar/models/calendar.dart';
 import 'package:flutter_wanandroid/utils/calendar_util.dart';
+import 'package:flutter_wanandroid/widget/loading_wrap.dart';
 
 class CalendarState implements Cloneable<CalendarState> {
   List<DateTime>? datetimes;
@@ -9,6 +11,8 @@ class CalendarState implements Cloneable<CalendarState> {
   DateTime? nowTime;
   ScrollController? scrollController;
   GlobalKey scrollKey = GlobalKey();
+  CalendarWrap? calendarWrap;
+  LoadingState? loadingState;
 
   @override
   CalendarState clone() {
@@ -18,7 +22,9 @@ class CalendarState implements Cloneable<CalendarState> {
       ..keys = keys
       ..nowTime = nowTime
       ..scrollController = scrollController
-      ..scrollKey = scrollKey;
+      ..scrollKey = scrollKey
+      ..calendarWrap = calendarWrap
+      ..loadingState = loadingState;
   }
 }
 
@@ -34,5 +40,6 @@ CalendarState initState(Map<String, dynamic>? args) {
     ..bottomList = ["今天", "日历", "收件箱"]
     ..keys = keyList
     ..nowTime = DateTime.now()
-    ..scrollController = ScrollController();
+    ..scrollController = ScrollController()
+    ..loadingState = LoadingState.isLoading;
 }

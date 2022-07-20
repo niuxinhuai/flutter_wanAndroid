@@ -114,3 +114,9 @@ class WeatherUri extends Uri {
   static String getWeather(double lat, double lng) =>
       "v2.6/${ConstantsKey.weatherToken}/$lng,$lat/weather?alert=true&dailysteps=7&hourlysteps=24";
 }
+
+class CalendarUri extends Uri {
+  ///获取对应年份的节假日
+  static String getCalendarHolidays(int year) =>
+      "http://timor.tech/api/holiday/year/$year/";
+}

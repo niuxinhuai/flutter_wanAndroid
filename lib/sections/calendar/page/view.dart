@@ -6,6 +6,7 @@ import 'package:flutter_wanandroid/utils/calendar_lunar_util.dart';
 import 'package:flutter_wanandroid/utils/calendar_util.dart';
 import 'package:flutter_wanandroid/widget/appbar.dart';
 import 'package:flutter_wanandroid/widget/calendar.dart';
+import 'package:flutter_wanandroid/widget/loading_wrap.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -61,21 +62,29 @@ Widget buildView(
         ),
       ),
     ),
-    body: SingleChildScrollView(
-      key: state.scrollKey,
-      controller: state.scrollController,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: state.datetimes!
-            .map((e) => Container(
-                  key: state.keys![state.datetimes!.indexOf(e)],
-                  child: GpCalendar(
-                    now: state.nowTime,
-                    dateTime: e,
-                    width: MediaQuery.of(viewService.context).size.width,
-                  ),
-                ))
-            .toList(),
+    body: LoadingWrap(
+      loadingState: state.loadingState,
+      successChild: Builder(
+        builder: (context) {
+          return SingleChildScrollView(
+            key: state.scrollKey,
+            controller: state.scrollController,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: state.datetimes!
+                  .map((e) => Container(
+                        key: state.keys![state.datetimes!.indexOf(e)],
+                        child: GpCalendar(
+                          calendarWrap: state.calendarWrap,
+                          now: state.nowTime,
+                          dateTime: e,
+                          width: MediaQuery.of(viewService.context).size.width,
+                        ),
+                      ))
+                  .toList(),
+            ),
+          );
+        },
       ),
     ),
   );

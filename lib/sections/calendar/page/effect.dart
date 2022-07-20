@@ -1,5 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/cupertino.dart' as P;
+import 'package:flutter_wanandroid/repository/services/common_service.dart';
+import 'package:flutter_wanandroid/sections/calendar/models/calendar.dart';
 import 'action.dart';
 import 'state.dart';
 import 'dart:ui';
@@ -8,10 +10,17 @@ Effect<CalendarState>? buildEffect() {
   return combineEffects(<Object, Effect<CalendarState>>{
     CalendarAction.action: _onAction,
     CalendarAction.onTapBottom: _onTapBottom,
+    Lifecycle.initState: _initState,
   });
 }
 
 void _onAction(Action action, Context<CalendarState> ctx) {}
+
+void _initState(Action action, Context<CalendarState> ctx) async {
+  CalendarWrap calendarWrap =
+      await CommonService.getCalendarHoliday(ctx.state.nowTime!.year);
+  ctx.dispatch(CalendarActionCreator.didFetchAction(calendarWrap));
+}
 
 void _onTapBottom(Action action, Context<CalendarState> ctx) {
   final int index = action.payload;

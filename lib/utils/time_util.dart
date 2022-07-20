@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TimeUtil {
   TimeUtil._();
 
+  static const String _format1 = 'yyyy.MM.dd';
+  static const String _format2 = 'yyMMdd';
+  static const String _format3 = "yyyy-MM-dd";
+  static const String _format4 = "HH:mm";
+  static const String _format5 = "yyyyMMdd";
+  static const String _format6 = "yyyyMMdd HH:mm";
+  static const String _format7 = "MM-dd";
+
   static int getApartSeconds() {
     DateTime now = DateTime.now();
     return now.millisecondsSinceEpoch ~/ 1000;
+  }
+
+  static String getFormat7(DateTime dateTime) {
+    return DateFormat(_format7).format(dateTime);
   }
 
   static bool isNowHour(String hour) {

@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter_wanandroid/constants/uri.dart';
 import 'package:flutter_wanandroid/helper/service_helper.dart';
 import 'package:flutter_wanandroid/models/simple_model.dart';
+import 'package:flutter_wanandroid/sections/calendar/models/calendar.dart';
 import 'package:flutter_wanandroid/sections/home/models/article/article.dart';
 import 'package:flutter_wanandroid/sections/home/models/banner/banner.dart';
 import 'package:flutter_wanandroid/sections/knowledge/models/knowledge/knowledge.dart';
@@ -212,5 +214,14 @@ class CommonService {
     return Dio()
         .get(Uri.caiyun_base_uri + WeatherUri.weatherPlace(query))
         .then((value) => PlaceStage.fromJson(value.data));
+  }
+
+  ///获取日历节假日信息
+  static Future<CalendarWrap> getCalendarHoliday(int year) {
+    return Dio()
+        .get(CalendarUri.getCalendarHolidays(year),
+            options:
+                buildCacheOptions(Duration(days: 3), subKey: "calendar_$year"))
+        .then((value) => CalendarWrap.fromJson(value.data));
   }
 }
