@@ -70,6 +70,10 @@ class _GpCalendarState extends State<GpCalendar> {
 //          String time =
 //              '${lunarCalendar.getChinaMonthString()}月${LunarCalendar.getChinaDayString(lunarCalendar.day)}';
           lunarStr = LunarCalendar.getChinaDayString(lunarCalendar.day);
+          if (lunarStr == "初一") {
+            lunarStr = "${lunarCalendar.getChinaMonthString()}月";
+            holidayState = 3;
+          }
 //          print(">>>>>>>>>>>>>>>>>>:$format7  >>>lunarTime:$lunarTime");
           if (widget.calendarWrap?.holiday != null &&
               widget.calendarWrap!.holiday!.length != 0) {
@@ -97,6 +101,8 @@ class _GpCalendarState extends State<GpCalendar> {
         if (holidayState == 1) {
           detailColor = CommonColors.primary;
         } else if (holidayState == 2) {
+          detailColor = Colors.red;
+        } else if (holidayState == 3) {
           detailColor = Colors.red;
         }
         Widget rowChildWidget = Container(
