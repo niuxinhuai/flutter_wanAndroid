@@ -31,6 +31,10 @@
 	<array>
 		<string>_dartobservatory._tcp</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>用用相机</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>小脸蛋</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>Allow Flutters</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
