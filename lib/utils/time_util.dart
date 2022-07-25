@@ -40,6 +40,21 @@ class TimeUtil {
     return DateUtils.isSameDay(DateTime.now(), date);
   }
 
+  static bool isSameMonthButBeforDay(DateTime date) {
+    DateTime now = DateTime.now();
+    return isSameMonth(date) && date.isBefore(now);
+  }
+
+  static bool isSameMonthButAfterDay(DateTime date) {
+    DateTime now = DateTime.now();
+    return isSameMonth(date) && date.isAfter(now);
+  }
+
+  static bool isSameMonth(DateTime date) {
+    DateTime now = DateTime.now();
+    return (now.year == date.year && now.month == date.month);
+  }
+
   static bool isYesterday(DateTime time) {
     DateTime now = DateTime.now();
     DateTime yesterday = DateTime(now.year, now.month, now.day - 1);

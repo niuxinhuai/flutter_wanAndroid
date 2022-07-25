@@ -1,3 +1,4 @@
+import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/res/colors.dart';
@@ -58,84 +59,37 @@ class _GpCalendarState extends State<GpCalendar> {
         if (index > days) {
           index = -100;
         }
-        bool isToday =
-            (nowTime!.month == widget.now!.month && widget.now!.day == index);
+
         bool canShow = (index >= 1 && index <= days);
-        String lunarStr = "";
-        int holidayState = 0;
+        Widget? cellWidget;
+
         if (canShow) {
+          //时间
           DateTime lunarTime = DateTime(nowTime!.year, nowTime!.month, index);
+          //状态
+          _CalendarState _calendarState = getState(lunarTime);
+          CalendarItem? holidayItem;
           String format7 = TimeUtil.getFormat7(lunarTime);
-          LunarCalendar lunarCalendar = LunarCalendar(lunarTime);
-//          String time =
-//              '${lunarCalendar.getChinaMonthString()}月${LunarCalendar.getChinaDayString(lunarCalendar.day)}';
-          lunarStr = LunarCalendar.getChinaDayString(lunarCalendar.day);
-          if (lunarStr == "初一") {
-            lunarStr = "${lunarCalendar.getChinaMonthString()}月";
-            holidayState = 3;
-          }
-//          print(">>>>>>>>>>>>>>>>>>:$format7  >>>lunarTime:$lunarTime");
+
           if (widget.calendarWrap?.holiday != null &&
               widget.calendarWrap!.holiday!.length != 0) {
             if (widget.calendarWrap!.holiday!.containsKey(format7)) {
               ///存在节假日的时间
-              CalendarItem? calendarItem =
-                  widget.calendarWrap!.holiday![format7];
-              if (calendarItem != null) {
-                if (calendarItem.holiday != null) {
-                  if (calendarItem.holiday == true) {
-                    ///节假日
-                    lunarStr = calendarItem.name ?? lunarStr;
-                    holidayState = 1;
-                  } else {
-                    ///调休
-                    lunarStr = "补班";
-                    holidayState = 2;
-                  }
-                }
-              }
+              holidayItem = widget.calendarWrap!.holiday![format7];
             }
           }
-        }
-        Color detailColor = CommonColors.textColor999;
-        if (holidayState == 1) {
-          detailColor = CommonColors.primary;
-        } else if (holidayState == 2) {
-          detailColor = Colors.red;
-        } else if (holidayState == 3) {
-          detailColor = Colors.red;
+          cellWidget = _CalendarCell(
+                  dateTime: lunarTime,
+                  holidayItem: holidayItem,
+                  calendarState: _calendarState,
+                  size: itemWidth)
+              .drawSelf(context);
         }
         Widget rowChildWidget = Container(
           width: itemWidth,
           height: itemWidth,
-          decoration: isToday
-              ? BoxDecoration(
-                  color: Colors.red,
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(itemWidth / 2.0)))
-              : null,
           alignment: Alignment.center,
-          child: canShow
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "$index",
-                      style: GpOtherTheme.size17(context)?.copyWith(
-                          color: isToday
-                              ? CommonColors.onPrimaryTextColor
-                              : CommonColors.onSurfaceTextColor,
-                          fontSize: 19,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      lunarStr,
-                      style: GpOtherTheme.size12(context)
-                          ?.copyWith(fontSize: 10, color: detailColor),
-                    )
-                  ],
-                )
-              : null,
+          child: canShow ? cellWidget : null,
         );
         rowWidgets.add(rowChildWidget);
       }
@@ -144,6 +98,23 @@ class _GpCalendarState extends State<GpCalendar> {
     if (mounted) {
       setState(() {});
     }
+  }
+
+  _CalendarState getState(DateTime dateTime) {
+    _CalendarState state;
+    DateTime now = DateTime.now();
+    if (TimeUtil.isTodayByDateTime(dateTime)) {
+      state = _CalendarState.TODAY;
+    } else if (TimeUtil.isSameMonthButBeforDay(dateTime)) {
+      state = _CalendarState.CURRENT_MONTH_BEFORE_TODAY;
+    } else if (TimeUtil.isSameMonthButAfterDay(dateTime)) {
+      state = _CalendarState.CURRENT_MONTH_AFTER_TODAY;
+    } else if (dateTime.isBefore(now)) {
+      state = _CalendarState.PRE_MONTH_DAY;
+    } else {
+      state = _CalendarState.NEXT_MONTH_DAY;
+    }
+    return state;
   }
 
   @override
@@ -184,4 +155,101 @@ class _GpCalendarState extends State<GpCalendar> {
       ],
     );
   }
+}
+
+class _CalendarCell {
+  final DateTime? dateTime;
+  final double? size;
+  final CalendarItem? holidayItem;
+  final _CalendarState? calendarState;
+
+  _CalendarCell(
+      {this.dateTime, this.holidayItem, this.calendarState, this.size});
+
+  Widget drawSelf(BuildContext? context) {
+    Tuple2 tuple2 = getCalendarCellTup();
+    String lunarStr = tuple2.i0;
+    Color detailColor = tuple2.i1;
+
+    Widget rowChildWidget = Container(
+      width: size,
+      height: size,
+      decoration: isToday()
+          ? BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.all(Radius.circular(size! / 2.0)))
+          : null,
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "${dateTime!.day}",
+            style: GpOtherTheme.size17(context!)?.copyWith(
+                color: isToday()
+                    ? CommonColors.onPrimaryTextColor
+                    : CommonColors.onSurfaceTextColor,
+                fontSize: 19,
+                fontWeight: FontWeight.w500),
+          ),
+          Text(
+            lunarStr,
+            style: GpOtherTheme.size12(context)
+                ?.copyWith(fontSize: 10, color: detailColor),
+          )
+        ],
+      ),
+    );
+    return rowChildWidget;
+  }
+
+  bool isToday() {
+    if (calendarState == null) return false;
+    return calendarState == _CalendarState.TODAY;
+  }
+
+  Tuple2 getCalendarCellTup() {
+    String lunarStr = "";
+    int holidayState = 0;
+
+    LunarCalendar lunarCalendar = LunarCalendar(dateTime!);
+
+    lunarStr = LunarCalendar.getChinaDayString(lunarCalendar.day);
+    if (lunarStr == "初一") {
+      lunarStr = "${lunarCalendar.getChinaMonthString()}月";
+      holidayState = 3;
+    }
+
+    if (holidayItem != null) {
+      if (holidayItem!.holiday != null) {
+        if (holidayItem!.holiday == true) {
+          ///节假日
+          lunarStr = holidayItem!.name ?? lunarStr;
+          holidayState = 1;
+        } else {
+          ///调休
+          lunarStr = "补班";
+          holidayState = 2;
+        }
+      }
+    }
+
+    Color detailColor = CommonColors.textColor999;
+    if (holidayState == 1) {
+      detailColor = CommonColors.primary;
+    } else if (holidayState == 2) {
+      detailColor = Colors.red;
+    } else if (holidayState == 3) {
+      detailColor = Colors.red;
+    }
+    return Tuple2(lunarStr, detailColor);
+  }
+}
+
+enum _CalendarState {
+  TODAY, //今天
+  CURRENT_MONTH_BEFORE_TODAY, //当月，比今天早的日期
+  CURRENT_MONTH_AFTER_TODAY, //当月，比今天晚的日期
+  PRE_MONTH_DAY, //过去月份的日期
+  NEXT_MONTH_DAY, //下个月份的日期
 }
