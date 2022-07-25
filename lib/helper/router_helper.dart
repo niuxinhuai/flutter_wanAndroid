@@ -2,6 +2,7 @@ import 'package:fish_redux/fish_redux.dart' as FishRedux;
 import 'package:flutter_wanandroid/sections/amap/page/amap/page.dart';
 import 'package:flutter_wanandroid/sections/application/page/page.dart';
 import 'package:flutter_wanandroid/sections/calendar/page/page.dart';
+import 'package:flutter_wanandroid/sections/face/page/face/page.dart';
 import 'package:flutter_wanandroid/sections/favorite/page/page.dart';
 import 'package:flutter_wanandroid/sections/home/page/home/page.dart';
 import 'package:flutter_wanandroid/sections/home/page/webview/page.dart';
@@ -28,6 +29,7 @@ class RouterHelper {
     RouterKeys.weather_segment: WeatherSegmentPage(),
     RouterKeys.amap: AMapHomePage(),
     RouterKeys.calendar: CalendarPage(),
+    RouterKeys.face: FaceAuthPage(),
   };
 }
 
@@ -71,4 +73,7 @@ class RouterKeys {
 
   //日历
   static const calendar = "calendar";
+
+  //人脸识别
+  static const face = "face_auth";
 }
