@@ -32,10 +32,10 @@ class _GpCalendarState extends State<GpCalendar> {
     if (widget.dateTime == null) {
       nowTime = DateTime.now();
     }
-//    Future.delayed(Duration.zero, () {
-//      //在这里处理页面
-//      _reset();
-//    });
+    Future.delayed(Duration.zero, () {
+      //在这里处理页面
+      _reset();
+    });
   }
 
   void _reset() {
@@ -141,14 +141,13 @@ class _GpCalendarState extends State<GpCalendar> {
       }
       list.add(rowWidgets);
     }
-//    if (mounted) {
-//      setState(() {});
-//    }
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    _reset();
     if (list.isEmpty) {
       return Container(
         width: 0,

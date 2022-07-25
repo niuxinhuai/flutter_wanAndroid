@@ -87,7 +87,7 @@ class _ArticleBottomWidgetState extends State<ArticleBottomWidget> {
 
   Future<SimpleModel> collectArticle() async {
     if (widget.bean!.link != null &&
-        widget.bean!.link!.contains("www.wanandroid.com")) {
+        widget.bean!.link!.contains("wanandroid.com")) {
       return await CommonService.collectInArticle(id!);
     }
     String? title = widget.bean!.title;

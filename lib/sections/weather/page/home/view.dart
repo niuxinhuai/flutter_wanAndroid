@@ -20,7 +20,7 @@ Widget buildView(
         decoration: BoxDecoration(
             image: DecorationImage(
           image: new ExactAssetImage('assets/images/weather_bg.jpg'),
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.fill,
         )),
       ),
       if (state.list!.length != 0 && state.pageController != null)

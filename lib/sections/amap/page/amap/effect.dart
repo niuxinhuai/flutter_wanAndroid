@@ -22,6 +22,8 @@ void _onAction(Action action, Context<AMapHomeState> ctx) {}
 void _initState(Action action, Context<AMapHomeState> ctx) {
   AMapFlutterLocation.setApiKey(
       "900f72eeee0f21e435cebb0ef155582a", ConstantsKey.aMapiOSKey);
+  AMapFlutterLocation.updatePrivacyAgree(true);
+  AMapFlutterLocation.updatePrivacyShow(true, true);
   ctx.state.aMapFlutterLocation!.startLocation();
   ctx.state.aMapFlutterLocation!.onLocationChanged().listen((event) {
     MapLocationEvent locationEvent = MapLocationEvent.fromJson(event);
