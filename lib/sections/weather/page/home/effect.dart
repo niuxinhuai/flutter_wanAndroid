@@ -69,7 +69,7 @@ void _onTapAddPlace(Action action, Context<WeatherSegmentState> ctx) {
               ctx.dispatch(WeatherSegmentActionCreator.didRefreshAction(place));
               Future.delayed(Duration(milliseconds: 200), () {
                 ctx.state.pageController!.animateToPage(
-                  1,
+                  ctx.state.list!.length,
                   duration: const Duration(milliseconds: 200),
                   curve: P.Curves.easeInOut,
                 );
