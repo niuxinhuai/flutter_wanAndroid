@@ -20,11 +20,12 @@ class WeatherItemHeaderWidget extends StatelessWidget {
         children: [
           if (icon != null) icon!,
           if (text != null)
-            Text(
+            Expanded(
+                child: Text(
               text!,
               maxLines: 5,
               style: textStyle ?? TextStyle(color: Colors.lightBlueAccent),
-            )
+            ))
         ],
       ),
     );
