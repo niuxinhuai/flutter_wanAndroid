@@ -1,4 +1,4 @@
-import 'package:amap_flutter_location/amap_flutter_location.dart';
+//import 'package:amap_flutter_location/amap_flutter_location.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_wanandroid/constants/key.dart';
 import 'package:flutter_wanandroid/sections/amap/models/amap.dart';
@@ -20,24 +20,24 @@ Effect<AMapHomeState>? buildEffect() {
 void _onAction(Action action, Context<AMapHomeState> ctx) {}
 
 void _initState(Action action, Context<AMapHomeState> ctx) {
-  AMapFlutterLocation.setApiKey(
-      "900f72eeee0f21e435cebb0ef155582a", ConstantsKey.aMapiOSKey);
-  AMapFlutterLocation.updatePrivacyAgree(true);
-  AMapFlutterLocation.updatePrivacyShow(true, true);
-  ctx.state.aMapFlutterLocation!.startLocation();
-  ctx.state.aMapFlutterLocation!.onLocationChanged().listen((event) {
-    MapLocationEvent locationEvent = MapLocationEvent.fromJson(event);
-    print(">>>>>>>evemt:${locationEvent.longitude} ${locationEvent.latitude}");
-    if (ctx.state.cameraPosition != null) {
-      ctx.state.aMapFlutterLocation?.destroy();
-    } else {
-      ctx.state.cameraPosition = CameraPosition(
-          target: LatLng(double.parse(locationEvent.latitude!),
-              double.parse(locationEvent.longitude!)),
-          zoom: 17);
-      ctx.dispatch(AMapHomeActionCreator.didReloadction());
-    }
-  });
+//  AMapFlutterLocation.setApiKey(
+//      "900f72eeee0f21e435cebb0ef155582a", ConstantsKey.aMapiOSKey);
+//  AMapFlutterLocation.updatePrivacyAgree(true);
+//  AMapFlutterLocation.updatePrivacyShow(true, true);
+//  ctx.state.aMapFlutterLocation!.startLocation();
+//  ctx.state.aMapFlutterLocation!.onLocationChanged().listen((event) {
+//    MapLocationEvent locationEvent = MapLocationEvent.fromJson(event);
+//    print(">>>>>>>evemt:${locationEvent.longitude} ${locationEvent.latitude}");
+//    if (ctx.state.cameraPosition != null) {
+//      ctx.state.aMapFlutterLocation?.destroy();
+//    } else {
+//      ctx.state.cameraPosition = CameraPosition(
+//          target: LatLng(double.parse(locationEvent.latitude!),
+//              double.parse(locationEvent.longitude!)),
+//          zoom: 17);
+//      ctx.dispatch(AMapHomeActionCreator.didReloadction());
+//    }
+//  });
 }
 
 void _onMapCreate(Action action, Context<AMapHomeState> ctx) {
@@ -74,6 +74,6 @@ void _onLocationChanged(Action action, Context<AMapHomeState> ctx) {
 }
 
 void _dispose(Action action, Context<AMapHomeState> ctx) {
-  ctx.state.aMapFlutterLocation?.destroy();
+//  ctx.state.aMapFlutterLocation?.destroy();
   ctx.state.aMapController?.disponse();
 }

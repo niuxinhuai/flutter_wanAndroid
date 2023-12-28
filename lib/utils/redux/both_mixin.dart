@@ -50,12 +50,14 @@ class _BothState<T> extends ComponentState<T>
   /// It can be regarded as Android "onStop" or iOS "viewDidDisappear"
   @override
   void onPageHide() {
+    print(">>>>>>>>>>>>>>>>>>>>>隐藏le");
     ctx.dispatch(CommonActionCreator.onPageHide());
   }
 
   /// It can be regarded as Android "onResume" or iOS "viewDidAppear"
   @override
   void onPageShow() {
+    print(">>>>>>>>>>>>>>>>>>>>>显示出来了");
     ctx.dispatch(CommonActionCreator.onPageShow());
   }
 

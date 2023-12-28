@@ -6,6 +6,7 @@ import 'package:flutter_wanandroid/sections/home/widget/article_item.dart';
 
 Widget buildView(
     HomeArticleBean state, Dispatch dispatch, ViewService viewService) {
+  print(">>>>>>>>>>>>>>>>>>>>name:${state.title} collect:${state.collect}");
   if (state.envelopePic != null && state.envelopePic!.isNotEmpty) {
     print(">>>>>>>>url:${state.envelopePic}");
   }

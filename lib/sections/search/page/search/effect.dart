@@ -6,6 +6,7 @@ import 'package:flutter_wanandroid/repository/database/common_database.dart';
 import 'package:flutter_wanandroid/repository/services/common_service.dart';
 import 'package:flutter_wanandroid/sections/search/models/hot_search.dart';
 import 'package:flutter_wanandroid/sections/search/page/search/history_component/action.dart';
+import 'package:flutter_wanandroid/utils/redux/common/common_action.dart';
 import 'package:flutter_wanandroid/utils/time_util.dart';
 import 'action.dart';
 import 'state.dart';
@@ -17,7 +18,17 @@ Effect<SearchArticleState>? buildEffect() {
     SearchArticleAction.onSubmit: _onSubmit,
     Lifecycle.dispose: _dispose,
     Lifecycle.initState: _initState,
+    Lifecycle.appear: _pageShow,
+    Lifecycle.disappear: _pageHide,
   });
+}
+
+void _pageShow(Action action, Context<SearchArticleState> ctx) async {
+  print(">>>>>>>>>>>>>>>>>>>>>>>pageShow");
+}
+
+void _pageHide(Action action, Context<SearchArticleState> ctx) async {
+  print(">>>>>>>>>>>>>>>>>>>>>>>pageHide");
 }
 
 void _initState(Action action, Context<SearchArticleState> ctx) async {

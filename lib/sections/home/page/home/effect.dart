@@ -1,4 +1,3 @@
-
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_wanandroid/helper/router.dart';
 import 'package:flutter_wanandroid/helper/router_helper.dart';
@@ -21,7 +20,6 @@ Effect<HomeState>? buildEffect() {
 }
 
 void _initState(Action action, Context<HomeState> ctx) async {
-
   HomeBannerWrap? bannerWrap = await CommonService.getHomeBanner();
   HomeArticleWrap? articleWrap =
       await CommonService.getHomeArticle(page: ctx.state.page);
@@ -52,8 +50,10 @@ void _onTapBanner(Action action, Context<HomeState> ctx) {
 }
 
 void _onTapCell(Action action, Context<HomeState> ctx) {
+  print(">>>>>>>>>>>我走了effect");
   final HomeArticleBean articleBean = action.payload;
-
+  articleBean.collect = true;
+  ctx.dispatch(HomeActionCreator.didRefreshAction());
   ARouter.open(ctx.context, RouterKeys.webView,
       params: {"url": articleBean.link ?? ""});
 }

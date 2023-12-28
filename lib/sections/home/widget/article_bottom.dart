@@ -60,9 +60,11 @@ class _ArticleBottomWidgetState extends State<ArticleBottomWidget> {
 
   void _onTapCollect() async {
     if (id != null) {
+      print(">>>>>>1111");
       SimpleModel model = hasCollect
           ? await CommonService.unCollectArticle(id!)
           : await collectArticle();
+      print(">>>>>>2222");
       if (model.errorCode == 0) {
         hasCollect = !hasCollect;
         if (hasCollect) {
@@ -74,7 +76,7 @@ class _ArticleBottomWidgetState extends State<ArticleBottomWidget> {
           }
         }
 
-        ///刷新界面
+        ///刷新界
         if (mounted) {
           setState(() {});
         }

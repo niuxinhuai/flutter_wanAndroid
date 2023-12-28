@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/helper/flutter_helper.dart';
 import 'package:flutter_wanandroid/res/theme.dart';
 import 'package:flutter_wanandroid/sections/application/page/page.dart';
+import 'package:one_context/one_context.dart';
 
 void main() {
   FlutterBindings();
@@ -15,9 +16,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: getAppTheme(),
-      home: Builder(builder: (BuildContext context) {
-        return ApplicationPage().buildPage({});
-      }),
+      builder: OneContext().builder,
+      navigatorKey: OneContext().key,
+      home: Builder(
+        builder: (BuildContext context) {
+          return ApplicationPage().buildPage({});
+        },
+      ),
     );
   }
 }

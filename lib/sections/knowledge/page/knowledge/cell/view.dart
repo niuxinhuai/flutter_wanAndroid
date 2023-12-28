@@ -7,6 +7,7 @@ import 'package:flutter_wanandroid/sections/knowledge/page/knowledge/action.dart
 
 Widget buildView(
     KnowledgeStage state, Dispatch dispatch, ViewService viewService) {
+  print(">>>>>>top:${state.userControlSetTop}");
   return GestureDetector(
     behavior: HitTestBehavior.translucent,
     onTap: () => dispatch(KnowledgeActionCreator.onTapCellAction(state)),

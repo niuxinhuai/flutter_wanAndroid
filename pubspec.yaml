@@ -31,6 +31,8 @@ dependencies:
   #通知
   event_bus: ^2.0.0
 
+  video_player: ^2.2.7
+
       #下拉刷新
   pull_to_refresh: ^2.0.0
 
@@ -68,9 +70,11 @@ dependencies:
   amap_flutter_map: ^3.0.0
 
   # 定位
-  amap_flutter_location: ^3.0.0
+  #amap_flutter_location: ^3.0.0
 
   intl: ^0.17.0
+
+  one_context: ^1.1.1
 
 #人脸识别
   local_auth: ^1.1.11
@@ -104,7 +108,9 @@ dependency_overrides:
       ref: 'v3.0-null-safety-preview.18'
 
   fish_redux:
-    git: git@github.com:leftcoding/fish-redux.git
+    git:
+      url: https://git.planoeye.cn/super-niu/flutter_packages.git
+      path: fish-redux
 
 
 # The following section is specific to Flutter.

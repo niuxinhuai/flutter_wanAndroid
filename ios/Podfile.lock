@@ -1,15 +1,10 @@
 PODS:
   - AMap3DMap (9.3.0):
     - AMapFoundation (~> 1.7.0)
-  - amap_flutter_location (0.0.1):
-    - AMapLocation
-    - Flutter
   - amap_flutter_map (0.0.1):
     - AMap3DMap
     - Flutter
   - AMapFoundation (1.7.0)
-  - AMapLocation (2.9.0):
-    - AMapFoundation (>= 1.7.0)
   - Flutter (1.0.0)
   - flutter_boost (0.0.2):
     - Flutter
@@ -25,11 +20,12 @@ PODS:
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
+  - video_player (0.0.1):
+    - Flutter
   - webview_flutter_wkwebview (0.0.1):
     - Flutter
 
 DEPENDENCIES:
-  - amap_flutter_location (from `.symlinks/plugins/amap_flutter_location/ios`)
   - amap_flutter_map (from `.symlinks/plugins/amap_flutter_map/ios`)
   - Flutter (from `Flutter`)
   - flutter_boost (from `.symlinks/plugins/flutter_boost/ios`)
@@ -37,19 +33,17 @@ DEPENDENCIES:
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - video_player (from `.symlinks/plugins/video_player/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AMap3DMap
     - AMapFoundation
-    - AMapLocation
   trunk:
     - FMDB
 
 EXTERNAL SOURCES:
-  amap_flutter_location:
-    :path: ".symlinks/plugins/amap_flutter_location/ios"
   amap_flutter_map:
     :path: ".symlinks/plugins/amap_flutter_map/ios"
   Flutter:
@@ -64,15 +58,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_ios/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
+  video_player:
+    :path: ".symlinks/plugins/video_player/ios"
   webview_flutter_wkwebview:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
   AMap3DMap: e429ea5e1d76b1793b75029db007241d67d2ebdf
-  amap_flutter_location: 44ff5beb64f42e0bf5feb402fe299dac0013af6f
   amap_flutter_map: 979e54d227cedac6c7504a2151bfbf3bcf96760a
   AMapFoundation: c14fcebd8e4267c593bd2e25067ac86b0ce64aba
-  AMapLocation: f5eb11e11c62f0f599f80b578eec8a1f70deb985
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_boost: 6a73c54e5654df180c2cc379045b8cba9746fc8a
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -80,8 +74,9 @@ SPEC CHECKSUMS:
   path_provider_ios: 7d7ce634493af4477d156294792024ec3485acd5
   shared_preferences_ios: aef470a42dc4675a1cdd50e3158b42e3d1232b32
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
+  video_player: 7e9dad9437c238a97648819f6dd443c8854cf0c7
   webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
-PODFILE CHECKSUM: abf2aff7f4b831eaaf7658cc98ecb713c4cf0402
+PODFILE CHECKSUM: 772753b10e7f5e0fdad788a999b3e0b3d9a20287
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

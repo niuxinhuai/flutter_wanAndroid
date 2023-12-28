@@ -8,6 +8,8 @@ import 'action.dart';
 import 'state.dart';
 
 Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
+  String par = "";
+
   return Scaffold(
     key: state.globalKey,
     appBar: AppBar(

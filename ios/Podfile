@@ -2,7 +2,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 #source 'http://repo.baichuan-ios.taobao.com/baichuanSDK/AliBCSpecs.git'
 source 'https://github.com/aliyun/aliyun-specs.git'
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
