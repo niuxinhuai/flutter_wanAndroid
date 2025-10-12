@@ -107,10 +107,10 @@ dependency_overrides:
       url: https://github.com/alibaba/flutter_boost.git
       ref: 'v3.0-null-safety-preview.18'
 
-  fish_redux:
-    git:
-      url: https://git.planoeye.cn/super-niu/flutter_packages.git
-      path: fish-redux
+#  fish_redux:
+#    git:
+#      url: https://git.planoeye.cn/super-niu/flutter_packages.git
+#      path: fish-redux
 
 
 # The following section is specific to Flutter.
