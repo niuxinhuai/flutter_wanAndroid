@@ -6,11 +6,11 @@ part of 'hot_search.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SearchWrap _$SearchWrapFromJson(Map json) => SearchWrap()
+SearchWrap _$SearchWrapFromJson(Map<String, dynamic> json) => SearchWrap()
   ..errorMsg = json['errorMsg'] as String?
-  ..errorCode = json['errorCode'] as int?
+  ..errorCode = (json['errorCode'] as num?)?.toInt()
   ..data = (json['data'] as List<dynamic>?)
-      ?.map((e) => HotSearchItem.fromJson(Map<String, dynamic>.from(e as Map)))
+      ?.map((e) => HotSearchItem.fromJson(e as Map<String, dynamic>))
       .toList();
 
 Map<String, dynamic> _$SearchWrapToJson(SearchWrap instance) =>
@@ -20,12 +20,13 @@ Map<String, dynamic> _$SearchWrapToJson(SearchWrap instance) =>
       'data': instance.data,
     };
 
-HotSearchItem _$HotSearchItemFromJson(Map json) => HotSearchItem()
-  ..id = json['id'] as int?
-  ..link = json['link'] as String?
-  ..name = json['name'] as String?
-  ..order = json['order'] as int?
-  ..visible = json['visible'] as int?;
+HotSearchItem _$HotSearchItemFromJson(Map<String, dynamic> json) =>
+    HotSearchItem()
+      ..id = (json['id'] as num?)?.toInt()
+      ..link = json['link'] as String?
+      ..name = json['name'] as String?
+      ..order = (json['order'] as num?)?.toInt()
+      ..visible = (json['visible'] as num?)?.toInt();
 
 Map<String, dynamic> _$HotSearchItemToJson(HotSearchItem instance) =>
     <String, dynamic>{

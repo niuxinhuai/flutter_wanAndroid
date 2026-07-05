@@ -6,13 +6,13 @@ part of 'article.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-HomeArticleWrap _$HomeArticleWrapFromJson(Map json) => HomeArticleWrap()
-  ..errorMsg = json['errorMsg'] as String?
-  ..errorCode = json['errorCode'] as int?
-  ..data = json['data'] == null
-      ? null
-      : HomeArticleListData.fromJson(
-          Map<String, dynamic>.from(json['data'] as Map));
+HomeArticleWrap _$HomeArticleWrapFromJson(Map<String, dynamic> json) =>
+    HomeArticleWrap()
+      ..errorMsg = json['errorMsg'] as String?
+      ..errorCode = (json['errorCode'] as num?)?.toInt()
+      ..data = json['data'] == null
+          ? null
+          : HomeArticleListData.fromJson(json['data'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$HomeArticleWrapToJson(HomeArticleWrap instance) =>
     <String, dynamic>{
@@ -21,18 +21,17 @@ Map<String, dynamic> _$HomeArticleWrapToJson(HomeArticleWrap instance) =>
       'data': instance.data,
     };
 
-HomeArticleListData _$HomeArticleListDataFromJson(Map json) =>
+HomeArticleListData _$HomeArticleListDataFromJson(Map<String, dynamic> json) =>
     HomeArticleListData()
-      ..curPage = json['curPage'] as int?
+      ..curPage = (json['curPage'] as num?)?.toInt()
       ..articleList = (json['datas'] as List<dynamic>?)
-          ?.map((e) =>
-              HomeArticleBean.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => HomeArticleBean.fromJson(e as Map<String, dynamic>))
           .toList()
-      ..offset = json['offset'] as int?
+      ..offset = (json['offset'] as num?)?.toInt()
       ..over = json['over'] as bool?
-      ..pageCount = json['pageCount'] as int?
-      ..size = json['size'] as int?
-      ..total = json['total'] as int?;
+      ..pageCount = (json['pageCount'] as num?)?.toInt()
+      ..size = (json['size'] as num?)?.toInt()
+      ..total = (json['total'] as num?)?.toInt();
 
 Map<String, dynamic> _$HomeArticleListDataToJson(
         HomeArticleListData instance) =>
@@ -46,43 +45,44 @@ Map<String, dynamic> _$HomeArticleListDataToJson(
       'total': instance.total,
     };
 
-HomeArticleBean _$HomeArticleBeanFromJson(Map json) => HomeArticleBean()
-  ..apkLink = json['apkLink'] as String?
-  ..audit = json['audit'] as int?
-  ..author = json['author'] as String?
-  ..canEdit = json['canEdit'] as bool?
-  ..chapterId = json['chapterId'] as int?
-  ..chapterName = json['chapterName'] as String?
-  ..collect = json['collect'] as bool?
-  ..courseId = json['courseId'] as int?
-  ..desc = json['desc'] as String?
-  ..descMd = json['descMd'] as String?
-  ..envelopePic = json['envelopePic'] as String?
-  ..fresh = json['fresh'] as bool?
-  ..host = json['host'] as String?
-  ..id = json['id'] as int?
-  ..link = json['link'] as String?
-  ..niceDate = json['niceDate'] as String?
-  ..niceShareDate = json['niceShareDate'] as String?
-  ..origin = json['origin'] as String?
-  ..originId = json['originId'] as int?
-  ..prefix = json['prefix'] as String?
-  ..projectLink = json['projectLink'] as String?
-  ..publishTime = json['publishTime'] as int?
-  ..realSuperChapterId = json['realSuperChapterId'] as int?
-  ..selfVisible = json['selfVisible'] as int?
-  ..shareDate = json['shareDate'] as int?
-  ..shareUser = json['shareUser'] as String?
-  ..superChapterId = json['superChapterId'] as int?
-  ..superChapterName = json['superChapterName'] as String?
-  ..tags = (json['tags'] as List<dynamic>?)
-      ?.map((e) => ArticleTagBean.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..title = json['title'] as String?
-  ..type = json['type'] as int?
-  ..userId = json['userId'] as int?
-  ..visible = json['visible'] as int?
-  ..zan = json['zan'] as int?;
+HomeArticleBean _$HomeArticleBeanFromJson(Map<String, dynamic> json) =>
+    HomeArticleBean()
+      ..apkLink = json['apkLink'] as String?
+      ..audit = (json['audit'] as num?)?.toInt()
+      ..author = json['author'] as String?
+      ..canEdit = json['canEdit'] as bool?
+      ..chapterId = (json['chapterId'] as num?)?.toInt()
+      ..chapterName = json['chapterName'] as String?
+      ..collect = json['collect'] as bool?
+      ..courseId = (json['courseId'] as num?)?.toInt()
+      ..desc = json['desc'] as String?
+      ..descMd = json['descMd'] as String?
+      ..envelopePic = json['envelopePic'] as String?
+      ..fresh = json['fresh'] as bool?
+      ..host = json['host'] as String?
+      ..id = (json['id'] as num?)?.toInt()
+      ..link = json['link'] as String?
+      ..niceDate = json['niceDate'] as String?
+      ..niceShareDate = json['niceShareDate'] as String?
+      ..origin = json['origin'] as String?
+      ..originId = (json['originId'] as num?)?.toInt()
+      ..prefix = json['prefix'] as String?
+      ..projectLink = json['projectLink'] as String?
+      ..publishTime = (json['publishTime'] as num?)?.toInt()
+      ..realSuperChapterId = (json['realSuperChapterId'] as num?)?.toInt()
+      ..selfVisible = (json['selfVisible'] as num?)?.toInt()
+      ..shareDate = (json['shareDate'] as num?)?.toInt()
+      ..shareUser = json['shareUser'] as String?
+      ..superChapterId = (json['superChapterId'] as num?)?.toInt()
+      ..superChapterName = json['superChapterName'] as String?
+      ..tags = (json['tags'] as List<dynamic>?)
+          ?.map((e) => ArticleTagBean.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..title = json['title'] as String?
+      ..type = (json['type'] as num?)?.toInt()
+      ..userId = (json['userId'] as num?)?.toInt()
+      ..visible = (json['visible'] as num?)?.toInt()
+      ..zan = (json['zan'] as num?)?.toInt();
 
 Map<String, dynamic> _$HomeArticleBeanToJson(HomeArticleBean instance) =>
     <String, dynamic>{
@@ -122,9 +122,10 @@ Map<String, dynamic> _$HomeArticleBeanToJson(HomeArticleBean instance) =>
       'zan': instance.zan,
     };
 
-ArticleTagBean _$ArticleTagBeanFromJson(Map json) => ArticleTagBean()
-  ..name = json['name'] as String?
-  ..url = json['url'] as String?;
+ArticleTagBean _$ArticleTagBeanFromJson(Map<String, dynamic> json) =>
+    ArticleTagBean()
+      ..name = json['name'] as String?
+      ..url = json['url'] as String?;
 
 Map<String, dynamic> _$ArticleTagBeanToJson(ArticleTagBean instance) =>
     <String, dynamic>{

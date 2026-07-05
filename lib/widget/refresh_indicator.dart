@@ -18,13 +18,13 @@ class CustomRefreshIndicator extends StatelessWidget {
   final RefreshController? controller;
 
   CustomRefreshIndicator({
-    Key? key,
+    super.key,
     required this.controller,
     this.child,
     this.header,
     this.footer,
-    this.enablePullDown: false, //是否显示头部刷新控件,默认为false
-    this.enablePullUp: true, // 是否显示底部刷新控件，默认true
+    this.enablePullDown = false, //是否显示头部刷新控件,默认为false
+    this.enablePullUp = true, // 是否显示底部刷新控件，默认true
     this.onRefresh,
     this.onLoading,
   });

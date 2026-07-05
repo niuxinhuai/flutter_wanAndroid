@@ -2,7 +2,7 @@ import UIKit
 import Flutter
 import flutter_boost
 
-@UIApplicationMain
+@main
 @objc class AppDelegate: FlutterAppDelegate {
     
 //    var window: UIWindow?

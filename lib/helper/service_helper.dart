@@ -7,8 +7,8 @@ import 'package:flutter_wanandroid/helper/user.dart';
 class ServiceHelper {
   static Dio _dio = Dio(BaseOptions(
       baseUrl: Uri.baseUri,
-      connectTimeout: 30000,
-      receiveTimeout: 30000,
+      connectTimeout: const Duration(seconds: 30),
+      receiveTimeout: const Duration(seconds: 30),
       contentType: "application/x-www-form-urlencoded; charset=utf-8"));
 
   static Future<T> post<T>(

@@ -1,0 +1,11 @@
+{
+  "name": "flutter_boost",
+  "version": "4.5.11",
+  "description": "The next-generation Flutter-Native hybrid solution.",
+  "main": "",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@ohos/flutter_ohos": "file:har/flutter.har",
+  }
+}

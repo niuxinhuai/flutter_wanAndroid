@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter_wanandroid/constants/uri.dart';
 import 'package:flutter_wanandroid/helper/service_helper.dart';
 import 'package:flutter_wanandroid/models/simple_model.dart';
@@ -219,9 +218,7 @@ class CommonService {
   ///获取日历节假日信息
   static Future<CalendarWrap> getCalendarHoliday(int year) {
     return Dio()
-        .get(CalendarUri.getCalendarHolidays(year),
-            options:
-                buildCacheOptions(Duration(days: 30), subKey: "calendar_$year"))
+        .get(CalendarUri.getCalendarHolidays(year))
         .then((value) => CalendarWrap.fromJson(value.data));
   }
 }

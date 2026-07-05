@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "This is a EntryAbility."
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FlutterBoost示例"
+    },
+    {
+      "name": "tab_title",
+      "value": "页签"
+    },
+    {
+      "name": "tab_title_flutter",
+      "value": "flutter"
+    },
+    {
+      "name": "clipboard_reason",
+      "value": "获取剪贴板内容"
+    }
+  ]
+}

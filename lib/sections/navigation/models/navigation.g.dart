@@ -6,13 +6,13 @@ part of 'navigation.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NavigationArticleWrap _$NavigationArticleWrapFromJson(Map json) =>
+NavigationArticleWrap _$NavigationArticleWrapFromJson(
+        Map<String, dynamic> json) =>
     NavigationArticleWrap()
       ..errorMsg = json['errorMsg'] as String?
-      ..errorCode = json['errorCode'] as int?
+      ..errorCode = (json['errorCode'] as num?)?.toInt()
       ..data = (json['data'] as List<dynamic>?)
-          ?.map((e) =>
-              NavigationStage.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => NavigationStage.fromJson(e as Map<String, dynamic>))
           .toList();
 
 Map<String, dynamic> _$NavigationArticleWrapToJson(
@@ -23,13 +23,13 @@ Map<String, dynamic> _$NavigationArticleWrapToJson(
       'data': instance.data,
     };
 
-NavigationStage _$NavigationStageFromJson(Map json) => NavigationStage()
-  ..cid = json['cid'] as int?
-  ..name = json['name'] as String?
-  ..articles = (json['articles'] as List<dynamic>?)
-      ?.map(
-          (e) => HomeArticleBean.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList();
+NavigationStage _$NavigationStageFromJson(Map<String, dynamic> json) =>
+    NavigationStage()
+      ..cid = (json['cid'] as num?)?.toInt()
+      ..name = json['name'] as String?
+      ..articles = (json['articles'] as List<dynamic>?)
+          ?.map((e) => HomeArticleBean.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$NavigationStageToJson(NavigationStage instance) =>
     <String, dynamic>{

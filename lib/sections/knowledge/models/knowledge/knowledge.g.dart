@@ -6,13 +6,13 @@ part of 'knowledge.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-KnowledgeArticleWrap _$KnowledgeArticleWrapFromJson(Map json) =>
+KnowledgeArticleWrap _$KnowledgeArticleWrapFromJson(
+        Map<String, dynamic> json) =>
     KnowledgeArticleWrap()
       ..errorMsg = json['errorMsg'] as String?
-      ..errorCode = json['errorCode'] as int?
+      ..errorCode = (json['errorCode'] as num?)?.toInt()
       ..data = (json['data'] as List<dynamic>?)
-          ?.map((e) =>
-              KnowledgeStage.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => KnowledgeStage.fromJson(e as Map<String, dynamic>))
           .toList();
 
 Map<String, dynamic> _$KnowledgeArticleWrapToJson(
@@ -23,23 +23,23 @@ Map<String, dynamic> _$KnowledgeArticleWrapToJson(
       'data': instance.data,
     };
 
-KnowledgeStage _$KnowledgeStageFromJson(Map json) => KnowledgeStage()
-  ..visible = json['visible'] as int?
-  ..userControlSetTop = json['userControlSetTop'] as bool?
-  ..parentChapterId = json['parentChapterId'] as int?
-  ..order = json['order'] as int?
-  ..name = json['name'] as String?
-  ..lisenseLink = json['lisenseLink'] as String?
-  ..lisense = json['lisense'] as String?
-  ..id = json['id'] as int?
-  ..desc = json['desc'] as String?
-  ..cover = json['cover'] as String?
-  ..courseId = json['courseId'] as int?
-  ..author = json['author'] as String?
-  ..children = (json['children'] as List<dynamic>?)
-      ?.map((e) =>
-          KnowledgeChildItem.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList();
+KnowledgeStage _$KnowledgeStageFromJson(Map<String, dynamic> json) =>
+    KnowledgeStage()
+      ..visible = (json['visible'] as num?)?.toInt()
+      ..userControlSetTop = json['userControlSetTop'] as bool?
+      ..parentChapterId = (json['parentChapterId'] as num?)?.toInt()
+      ..order = (json['order'] as num?)?.toInt()
+      ..name = json['name'] as String?
+      ..lisenseLink = json['lisenseLink'] as String?
+      ..lisense = json['lisense'] as String?
+      ..id = (json['id'] as num?)?.toInt()
+      ..desc = json['desc'] as String?
+      ..cover = json['cover'] as String?
+      ..courseId = (json['courseId'] as num?)?.toInt()
+      ..author = json['author'] as String?
+      ..children = (json['children'] as List<dynamic>?)
+          ?.map((e) => KnowledgeChildItem.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$KnowledgeStageToJson(KnowledgeStage instance) =>
     <String, dynamic>{
@@ -58,19 +58,19 @@ Map<String, dynamic> _$KnowledgeStageToJson(KnowledgeStage instance) =>
       'children': instance.children,
     };
 
-KnowledgeChildItem _$KnowledgeChildItemFromJson(Map json) =>
+KnowledgeChildItem _$KnowledgeChildItemFromJson(Map<String, dynamic> json) =>
     KnowledgeChildItem()
-      ..visible = json['visible'] as int?
+      ..visible = (json['visible'] as num?)?.toInt()
       ..userControlSetTop = json['userControlSetTop'] as bool?
-      ..parentChapterId = json['parentChapterId'] as int?
-      ..order = json['order'] as int?
+      ..parentChapterId = (json['parentChapterId'] as num?)?.toInt()
+      ..order = (json['order'] as num?)?.toInt()
       ..name = json['name'] as String?
       ..lisenseLink = json['lisenseLink'] as String?
       ..lisense = json['lisense'] as String?
-      ..id = json['id'] as int?
+      ..id = (json['id'] as num?)?.toInt()
       ..desc = json['desc'] as String?
       ..cover = json['cover'] as String?
-      ..courseId = json['courseId'] as int?
+      ..courseId = (json['courseId'] as num?)?.toInt()
       ..author = json['author'] as String?;
 
 Map<String, dynamic> _$KnowledgeChildItemToJson(KnowledgeChildItem instance) =>

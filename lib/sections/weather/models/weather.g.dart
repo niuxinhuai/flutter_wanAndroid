@@ -6,22 +6,21 @@ part of 'weather.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherStage _$WeatherStageFromJson(Map json) => WeatherStage()
+WeatherStage _$WeatherStageFromJson(Map<String, dynamic> json) => WeatherStage()
   ..status = json['status'] as String?
   ..api_version = json['api_version'] as String?
   ..api_status = json['api_status'] as String?
   ..lang = json['lang'] as String?
   ..unit = json['unit'] as String?
-  ..tzshift = json['tzshift'] as int?
+  ..tzshift = (json['tzshift'] as num?)?.toInt()
   ..timezone = json['timezone'] as String?
-  ..server_time = json['server_time'] as int?
+  ..server_time = (json['server_time'] as num?)?.toInt()
   ..location = (json['location'] as List<dynamic>?)
       ?.map((e) => (e as num).toDouble())
       .toList()
   ..result = json['result'] == null
       ? null
-      : WeatherResult.fromJson(
-          Map<String, dynamic>.from(json['result'] as Map));
+      : WeatherResult.fromJson(json['result'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$WeatherStageToJson(WeatherStage instance) =>
     <String, dynamic>{
@@ -37,24 +36,23 @@ Map<String, dynamic> _$WeatherStageToJson(WeatherStage instance) =>
       'result': instance.result,
     };
 
-WeatherResult _$WeatherResultFromJson(Map json) => WeatherResult()
-  ..daily = json['daily'] == null
-      ? null
-      : WeatherResultDaily.fromJson(
-          Map<String, dynamic>.from(json['daily'] as Map))
-  ..realtime = json['realtime'] == null
-      ? null
-      : WeatherResultRealTime.fromJson(
-          Map<String, dynamic>.from(json['realtime'] as Map))
-  ..hourly = json['hourly'] == null
-      ? null
-      : WeatherHourly.fromJson(Map<String, dynamic>.from(json['hourly'] as Map))
-  ..alert = json['alert'] == null
-      ? null
-      : WeatherResultAlert.fromJson(
-          Map<String, dynamic>.from(json['alert'] as Map))
-  ..primary = json['primary'] as int?
-  ..forecast_keypoint = json['forecast_keypoint'] as String?;
+WeatherResult _$WeatherResultFromJson(Map<String, dynamic> json) =>
+    WeatherResult()
+      ..daily = json['daily'] == null
+          ? null
+          : WeatherResultDaily.fromJson(json['daily'] as Map<String, dynamic>)
+      ..realtime = json['realtime'] == null
+          ? null
+          : WeatherResultRealTime.fromJson(
+              json['realtime'] as Map<String, dynamic>)
+      ..hourly = json['hourly'] == null
+          ? null
+          : WeatherHourly.fromJson(json['hourly'] as Map<String, dynamic>)
+      ..alert = json['alert'] == null
+          ? null
+          : WeatherResultAlert.fromJson(json['alert'] as Map<String, dynamic>)
+      ..primary = (json['primary'] as num?)?.toInt()
+      ..forecast_keypoint = json['forecast_keypoint'] as String?;
 
 Map<String, dynamic> _$WeatherResultToJson(WeatherResult instance) =>
     <String, dynamic>{
@@ -66,16 +64,14 @@ Map<String, dynamic> _$WeatherResultToJson(WeatherResult instance) =>
       'forecast_keypoint': instance.forecast_keypoint,
     };
 
-WeatherResultAlert _$WeatherResultAlertFromJson(Map json) =>
+WeatherResultAlert _$WeatherResultAlertFromJson(Map<String, dynamic> json) =>
     WeatherResultAlert()
       ..status = json['status'] as String?
       ..content = (json['content'] as List<dynamic>?)
-          ?.map(
-              (e) => AlertContent.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => AlertContent.fromJson(e as Map<String, dynamic>))
           .toList()
       ..adcodes = (json['adcodes'] as List<dynamic>?)
-          ?.map(
-              (e) => AlertAdcodes.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => AlertAdcodes.fromJson(e as Map<String, dynamic>))
           .toList();
 
 Map<String, dynamic> _$WeatherResultAlertToJson(WeatherResultAlert instance) =>
@@ -85,52 +81,43 @@ Map<String, dynamic> _$WeatherResultAlertToJson(WeatherResultAlert instance) =>
       'adcodes': instance.adcodes,
     };
 
-WeatherHourly _$WeatherHourlyFromJson(Map json) => WeatherHourly()
-  ..status = json['status'] as String?
-  ..description = json['description'] as String?
-  ..precipitation = (json['precipitation'] as List<dynamic>?)
-      ?.map((e) =>
-          HourlyPrecipitation.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..temperature = (json['temperature'] as List<dynamic>?)
-      ?.map((e) =>
-          HourlyPrecipitation.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..apparent_temperature = (json['apparent_temperature'] as List<dynamic>?)
-      ?.map((e) =>
-          HourlyPrecipitation.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..wind = (json['wind'] as List<dynamic>?)
-      ?.map((e) =>
-          HourlyPrecipitation.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..humidity = (json['humidity'] as List<dynamic>?)
-      ?.map((e) =>
-          HourlyPrecipitation.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..cloudrate = (json['cloudrate'] as List<dynamic>?)
-      ?.map((e) =>
-          HourlyPrecipitation.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..skycon = (json['skycon'] as List<dynamic>?)
-      ?.map((e) => HourlySkycon.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..pressure = (json['pressure'] as List<dynamic>?)
-      ?.map((e) =>
-          HourlyPrecipitation.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..visibility = (json['visibility'] as List<dynamic>?)
-      ?.map((e) =>
-          HourlyPrecipitation.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..dswrf = (json['dswrf'] as List<dynamic>?)
-      ?.map((e) =>
-          HourlyPrecipitation.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..air_quality = json['air_quality'] == null
-      ? null
-      : HourlyAir.fromJson(
-          Map<String, dynamic>.from(json['air_quality'] as Map));
+WeatherHourly _$WeatherHourlyFromJson(Map<String, dynamic> json) =>
+    WeatherHourly()
+      ..status = json['status'] as String?
+      ..description = json['description'] as String?
+      ..precipitation = (json['precipitation'] as List<dynamic>?)
+          ?.map((e) => HourlyPrecipitation.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..temperature = (json['temperature'] as List<dynamic>?)
+          ?.map((e) => HourlyPrecipitation.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..apparent_temperature = (json['apparent_temperature'] as List<dynamic>?)
+          ?.map((e) => HourlyPrecipitation.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..wind = (json['wind'] as List<dynamic>?)
+          ?.map((e) => HourlyPrecipitation.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..humidity = (json['humidity'] as List<dynamic>?)
+          ?.map((e) => HourlyPrecipitation.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..cloudrate = (json['cloudrate'] as List<dynamic>?)
+          ?.map((e) => HourlyPrecipitation.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..skycon = (json['skycon'] as List<dynamic>?)
+          ?.map((e) => HourlySkycon.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..pressure = (json['pressure'] as List<dynamic>?)
+          ?.map((e) => HourlyPrecipitation.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..visibility = (json['visibility'] as List<dynamic>?)
+          ?.map((e) => HourlyPrecipitation.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..dswrf = (json['dswrf'] as List<dynamic>?)
+          ?.map((e) => HourlyPrecipitation.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..air_quality = json['air_quality'] == null
+          ? null
+          : HourlyAir.fromJson(json['air_quality'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$WeatherHourlyToJson(WeatherHourly instance) =>
     <String, dynamic>{
@@ -149,57 +136,51 @@ Map<String, dynamic> _$WeatherHourlyToJson(WeatherHourly instance) =>
       'air_quality': instance.air_quality,
     };
 
-WeatherResultDaily _$WeatherResultDailyFromJson(Map json) =>
+WeatherResultDaily _$WeatherResultDailyFromJson(Map<String, dynamic> json) =>
     WeatherResultDaily()
       ..status = json['status'] as String?
       ..astro = (json['astro'] as List<dynamic>?)
-          ?.map((e) => DailyAstro.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailyAstro.fromJson(e as Map<String, dynamic>))
           .toList()
       ..precipitation = (json['precipitation'] as List<dynamic>?)
-          ?.map((e) => DailyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailyItem.fromJson(e as Map<String, dynamic>))
           .toList()
       ..temperature = (json['temperature'] as List<dynamic>?)
-          ?.map((e) => DailyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailyItem.fromJson(e as Map<String, dynamic>))
           .toList()
       ..wind = (json['wind'] as List<dynamic>?)
-          ?.map((e) =>
-              DailyItemSpeed.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailyItemSpeed.fromJson(e as Map<String, dynamic>))
           .toList()
       ..humidity = (json['humidity'] as List<dynamic>?)
-          ?.map((e) => DailyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailyItem.fromJson(e as Map<String, dynamic>))
           .toList()
       ..cloudrate = (json['cloudrate'] as List<dynamic>?)
-          ?.map((e) => DailyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailyItem.fromJson(e as Map<String, dynamic>))
           .toList()
       ..pressure = (json['pressure'] as List<dynamic>?)
-          ?.map((e) => DailyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailyItem.fromJson(e as Map<String, dynamic>))
           .toList()
       ..visibility = (json['visibility'] as List<dynamic>?)
-          ?.map((e) => DailyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailyItem.fromJson(e as Map<String, dynamic>))
           .toList()
       ..dswrf = (json['dswrf'] as List<dynamic>?)
-          ?.map((e) => DailyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailyItem.fromJson(e as Map<String, dynamic>))
           .toList()
       ..air_quality = json['air_quality'] == null
           ? null
-          : DailyAir.fromJson(
-              Map<String, dynamic>.from(json['air_quality'] as Map))
+          : DailyAir.fromJson(json['air_quality'] as Map<String, dynamic>)
       ..skycon = (json['skycon'] as List<dynamic>?)
-          ?.map(
-              (e) => DailySkyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailySkyItem.fromJson(e as Map<String, dynamic>))
           .toList()
       ..skycon_08h_20h = (json['skycon_08h_20h'] as List<dynamic>?)
-          ?.map(
-              (e) => DailySkyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailySkyItem.fromJson(e as Map<String, dynamic>))
           .toList()
       ..skycon_20h_32h = (json['skycon_20h_32h'] as List<dynamic>?)
-          ?.map(
-              (e) => DailySkyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+          ?.map((e) => DailySkyItem.fromJson(e as Map<String, dynamic>))
           .toList()
       ..life_index = json['life_index'] == null
           ? null
-          : DailyLifeIndex.fromJson(
-              Map<String, dynamic>.from(json['life_index'] as Map));
+          : DailyLifeIndex.fromJson(json['life_index'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$WeatherResultDailyToJson(WeatherResultDaily instance) =>
     <String, dynamic>{
@@ -220,14 +201,14 @@ Map<String, dynamic> _$WeatherResultDailyToJson(WeatherResultDaily instance) =>
       'life_index': instance.life_index,
     };
 
-DailyAstro _$DailyAstroFromJson(Map json) => DailyAstro()
+DailyAstro _$DailyAstroFromJson(Map<String, dynamic> json) => DailyAstro()
   ..date = json['date'] as String?
   ..sunrise = json['sunrise'] == null
       ? null
-      : AstroSunrise.fromJson(Map<String, dynamic>.from(json['sunrise'] as Map))
+      : AstroSunrise.fromJson(json['sunrise'] as Map<String, dynamic>)
   ..sunset = json['sunset'] == null
       ? null
-      : AstroSunrise.fromJson(Map<String, dynamic>.from(json['sunset'] as Map));
+      : AstroSunrise.fromJson(json['sunset'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$DailyAstroToJson(DailyAstro instance) =>
     <String, dynamic>{
@@ -236,7 +217,7 @@ Map<String, dynamic> _$DailyAstroToJson(DailyAstro instance) =>
       'sunset': instance.sunset,
     };
 
-AstroSunrise _$AstroSunriseFromJson(Map json) =>
+AstroSunrise _$AstroSunriseFromJson(Map<String, dynamic> json) =>
     AstroSunrise()..time = json['time'] as String?;
 
 Map<String, dynamic> _$AstroSunriseToJson(AstroSunrise instance) =>
@@ -244,12 +225,12 @@ Map<String, dynamic> _$AstroSunriseToJson(AstroSunrise instance) =>
       'time': instance.time,
     };
 
-DailyAir _$DailyAirFromJson(Map json) => DailyAir()
+DailyAir _$DailyAirFromJson(Map<String, dynamic> json) => DailyAir()
   ..aqi = (json['aqi'] as List<dynamic>?)
-      ?.map((e) => DailyItemChn.fromJson(Map<String, dynamic>.from(e as Map)))
+      ?.map((e) => DailyItemChn.fromJson(e as Map<String, dynamic>))
       .toList()
   ..pm25 = (json['pm25'] as List<dynamic>?)
-      ?.map((e) => DailyItem.fromJson(Map<String, dynamic>.from(e as Map)))
+      ?.map((e) => DailyItem.fromJson(e as Map<String, dynamic>))
       .toList();
 
 Map<String, dynamic> _$DailyAirToJson(DailyAir instance) => <String, dynamic>{
@@ -257,22 +238,23 @@ Map<String, dynamic> _$DailyAirToJson(DailyAir instance) => <String, dynamic>{
       'pm25': instance.pm25,
     };
 
-DailyLifeIndex _$DailyLifeIndexFromJson(Map json) => DailyLifeIndex()
-  ..ultraviolet = (json['ultraviolet'] as List<dynamic>?)
-      ?.map((e) => DailyLifeItem.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..carWashing = (json['carWashing'] as List<dynamic>?)
-      ?.map((e) => DailyLifeItem.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..dressing = (json['dressing'] as List<dynamic>?)
-      ?.map((e) => DailyLifeItem.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..comfort = (json['comfort'] as List<dynamic>?)
-      ?.map((e) => DailyLifeItem.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList()
-  ..coldRisk = (json['coldRisk'] as List<dynamic>?)
-      ?.map((e) => DailyLifeItem.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList();
+DailyLifeIndex _$DailyLifeIndexFromJson(Map<String, dynamic> json) =>
+    DailyLifeIndex()
+      ..ultraviolet = (json['ultraviolet'] as List<dynamic>?)
+          ?.map((e) => DailyLifeItem.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..carWashing = (json['carWashing'] as List<dynamic>?)
+          ?.map((e) => DailyLifeItem.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..dressing = (json['dressing'] as List<dynamic>?)
+          ?.map((e) => DailyLifeItem.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..comfort = (json['comfort'] as List<dynamic>?)
+          ?.map((e) => DailyLifeItem.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..coldRisk = (json['coldRisk'] as List<dynamic>?)
+          ?.map((e) => DailyLifeItem.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$DailyLifeIndexToJson(DailyLifeIndex instance) =>
     <String, dynamic>{
@@ -283,7 +265,7 @@ Map<String, dynamic> _$DailyLifeIndexToJson(DailyLifeIndex instance) =>
       'coldRisk': instance.coldRisk,
     };
 
-DailyItem _$DailyItemFromJson(Map json) => DailyItem()
+DailyItem _$DailyItemFromJson(Map<String, dynamic> json) => DailyItem()
   ..date = json['date'] as String?
   ..max = (json['max'] as num?)?.toDouble()
   ..min = (json['min'] as num?)?.toDouble()
@@ -296,17 +278,18 @@ Map<String, dynamic> _$DailyItemToJson(DailyItem instance) => <String, dynamic>{
       'avg': instance.avg,
     };
 
-DailyItemSpeed _$DailyItemSpeedFromJson(Map json) => DailyItemSpeed()
-  ..date = json['date'] as String?
-  ..max = json['max'] == null
-      ? null
-      : DailyChildSpeed.fromJson(Map<String, dynamic>.from(json['max'] as Map))
-  ..min = json['min'] == null
-      ? null
-      : DailyChildSpeed.fromJson(Map<String, dynamic>.from(json['min'] as Map))
-  ..avg = json['avg'] == null
-      ? null
-      : DailyChildSpeed.fromJson(Map<String, dynamic>.from(json['avg'] as Map));
+DailyItemSpeed _$DailyItemSpeedFromJson(Map<String, dynamic> json) =>
+    DailyItemSpeed()
+      ..date = json['date'] as String?
+      ..max = json['max'] == null
+          ? null
+          : DailyChildSpeed.fromJson(json['max'] as Map<String, dynamic>)
+      ..min = json['min'] == null
+          ? null
+          : DailyChildSpeed.fromJson(json['min'] as Map<String, dynamic>)
+      ..avg = json['avg'] == null
+          ? null
+          : DailyChildSpeed.fromJson(json['avg'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$DailyItemSpeedToJson(DailyItemSpeed instance) =>
     <String, dynamic>{
@@ -316,17 +299,17 @@ Map<String, dynamic> _$DailyItemSpeedToJson(DailyItemSpeed instance) =>
       'avg': instance.avg,
     };
 
-DailyItemChn _$DailyItemChnFromJson(Map json) => DailyItemChn()
+DailyItemChn _$DailyItemChnFromJson(Map<String, dynamic> json) => DailyItemChn()
   ..date = json['date'] as String?
   ..max = json['max'] == null
       ? null
-      : DailyChildChn.fromJson(Map<String, dynamic>.from(json['max'] as Map))
+      : DailyChildChn.fromJson(json['max'] as Map<String, dynamic>)
   ..min = json['min'] == null
       ? null
-      : DailyChildChn.fromJson(Map<String, dynamic>.from(json['min'] as Map))
+      : DailyChildChn.fromJson(json['min'] as Map<String, dynamic>)
   ..avg = json['avg'] == null
       ? null
-      : DailyChildChn.fromJson(Map<String, dynamic>.from(json['avg'] as Map));
+      : DailyChildChn.fromJson(json['avg'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$DailyItemChnToJson(DailyItemChn instance) =>
     <String, dynamic>{
@@ -336,9 +319,10 @@ Map<String, dynamic> _$DailyItemChnToJson(DailyItemChn instance) =>
       'avg': instance.avg,
     };
 
-DailyChildSpeed _$DailyChildSpeedFromJson(Map json) => DailyChildSpeed()
-  ..speed = (json['speed'] as num?)?.toDouble()
-  ..direction = (json['direction'] as num?)?.toDouble();
+DailyChildSpeed _$DailyChildSpeedFromJson(Map<String, dynamic> json) =>
+    DailyChildSpeed()
+      ..speed = (json['speed'] as num?)?.toDouble()
+      ..direction = (json['direction'] as num?)?.toDouble();
 
 Map<String, dynamic> _$DailyChildSpeedToJson(DailyChildSpeed instance) =>
     <String, dynamic>{
@@ -346,9 +330,10 @@ Map<String, dynamic> _$DailyChildSpeedToJson(DailyChildSpeed instance) =>
       'direction': instance.direction,
     };
 
-DailyChildChn _$DailyChildChnFromJson(Map json) => DailyChildChn()
-  ..chn = json['chn'] as int?
-  ..usa = json['usa'] as int?;
+DailyChildChn _$DailyChildChnFromJson(Map<String, dynamic> json) =>
+    DailyChildChn()
+      ..chn = (json['chn'] as num?)?.toInt()
+      ..usa = (json['usa'] as num?)?.toInt();
 
 Map<String, dynamic> _$DailyChildChnToJson(DailyChildChn instance) =>
     <String, dynamic>{
@@ -356,7 +341,7 @@ Map<String, dynamic> _$DailyChildChnToJson(DailyChildChn instance) =>
       'usa': instance.usa,
     };
 
-DailySkyItem _$DailySkyItemFromJson(Map json) => DailySkyItem()
+DailySkyItem _$DailySkyItemFromJson(Map<String, dynamic> json) => DailySkyItem()
   ..date = json['date'] as String?
   ..value = json['value'] as String?;
 
@@ -366,10 +351,11 @@ Map<String, dynamic> _$DailySkyItemToJson(DailySkyItem instance) =>
       'value': instance.value,
     };
 
-DailyLifeItem _$DailyLifeItemFromJson(Map json) => DailyLifeItem()
-  ..date = json['date'] as String?
-  ..index = json['index'] as String?
-  ..desc = json['desc'] as String?;
+DailyLifeItem _$DailyLifeItemFromJson(Map<String, dynamic> json) =>
+    DailyLifeItem()
+      ..date = json['date'] as String?
+      ..index = json['index'] as String?
+      ..desc = json['desc'] as String?;
 
 Map<String, dynamic> _$DailyLifeItemToJson(DailyLifeItem instance) =>
     <String, dynamic>{
@@ -378,7 +364,8 @@ Map<String, dynamic> _$DailyLifeItemToJson(DailyLifeItem instance) =>
       'desc': instance.desc,
     };
 
-WeatherResultRealTime _$WeatherResultRealTimeFromJson(Map json) =>
+WeatherResultRealTime _$WeatherResultRealTimeFromJson(
+        Map<String, dynamic> json) =>
     WeatherResultRealTime()
       ..status = json['status'] as String?
       ..temperature = (json['temperature'] as num?)?.toDouble()
@@ -392,20 +379,17 @@ WeatherResultRealTime _$WeatherResultRealTimeFromJson(Map json) =>
           (json['apparent_temperature'] as num?)?.toDouble()
       ..wind = json['wind'] == null
           ? null
-          : RealTimeWind.fromJson(
-              Map<String, dynamic>.from(json['wind'] as Map))
+          : RealTimeWind.fromJson(json['wind'] as Map<String, dynamic>)
       ..precipitation = json['precipitation'] == null
           ? null
           : RealTimePrecipitation.fromJson(
-              Map<String, dynamic>.from(json['precipitation'] as Map))
+              json['precipitation'] as Map<String, dynamic>)
       ..air_quality = json['air_quality'] == null
           ? null
-          : RealTimeAir.fromJson(
-              Map<String, dynamic>.from(json['air_quality'] as Map))
+          : RealTimeAir.fromJson(json['air_quality'] as Map<String, dynamic>)
       ..life_index = json['life_index'] == null
           ? null
-          : RealTimeLife.fromJson(
-              Map<String, dynamic>.from(json['life_index'] as Map));
+          : RealTimeLife.fromJson(json['life_index'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$WeatherResultRealTimeToJson(
         WeatherResultRealTime instance) =>
@@ -425,7 +409,7 @@ Map<String, dynamic> _$WeatherResultRealTimeToJson(
       'life_index': instance.life_index,
     };
 
-RealTimeWind _$RealTimeWindFromJson(Map json) => RealTimeWind()
+RealTimeWind _$RealTimeWindFromJson(Map<String, dynamic> json) => RealTimeWind()
   ..speed = (json['speed'] as num?)?.toDouble()
   ..direction = (json['direction'] as num?)?.toDouble();
 
@@ -435,16 +419,16 @@ Map<String, dynamic> _$RealTimeWindToJson(RealTimeWind instance) =>
       'direction': instance.direction,
     };
 
-RealTimePrecipitation _$RealTimePrecipitationFromJson(Map json) =>
+RealTimePrecipitation _$RealTimePrecipitationFromJson(
+        Map<String, dynamic> json) =>
     RealTimePrecipitation()
       ..local = json['local'] == null
           ? null
-          : PrecipitationLocal.fromJson(
-              Map<String, dynamic>.from(json['local'] as Map))
+          : PrecipitationLocal.fromJson(json['local'] as Map<String, dynamic>)
       ..nearest = json['nearest'] == null
           ? null
           : PrecipitationNearest.fromJson(
-              Map<String, dynamic>.from(json['nearest'] as Map));
+              json['nearest'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$RealTimePrecipitationToJson(
         RealTimePrecipitation instance) =>
@@ -453,7 +437,7 @@ Map<String, dynamic> _$RealTimePrecipitationToJson(
       'nearest': instance.nearest,
     };
 
-PrecipitationLocal _$PrecipitationLocalFromJson(Map json) =>
+PrecipitationLocal _$PrecipitationLocalFromJson(Map<String, dynamic> json) =>
     PrecipitationLocal()
       ..status = json['status'] as String?
       ..datasource = json['datasource'] as String?
@@ -466,7 +450,8 @@ Map<String, dynamic> _$PrecipitationLocalToJson(PrecipitationLocal instance) =>
       'intensity': instance.intensity,
     };
 
-PrecipitationNearest _$PrecipitationNearestFromJson(Map json) =>
+PrecipitationNearest _$PrecipitationNearestFromJson(
+        Map<String, dynamic> json) =>
     PrecipitationNearest()
       ..status = json['status'] as String?
       ..distance = (json['distance'] as num?)?.toDouble()
@@ -480,20 +465,19 @@ Map<String, dynamic> _$PrecipitationNearestToJson(
       'intensity': instance.intensity,
     };
 
-RealTimeAir _$RealTimeAirFromJson(Map json) => RealTimeAir()
-  ..pm25 = json['pm25'] as int?
-  ..pm10 = json['pm10'] as int?
-  ..o3 = json['o3'] as int?
-  ..so2 = json['so2'] as int?
-  ..no2 = json['no2'] as int?
+RealTimeAir _$RealTimeAirFromJson(Map<String, dynamic> json) => RealTimeAir()
+  ..pm25 = (json['pm25'] as num?)?.toInt()
+  ..pm10 = (json['pm10'] as num?)?.toInt()
+  ..o3 = (json['o3'] as num?)?.toInt()
+  ..so2 = (json['so2'] as num?)?.toInt()
+  ..no2 = (json['no2'] as num?)?.toInt()
   ..co = (json['co'] as num?)?.toDouble()
   ..aqi = json['aqi'] == null
       ? null
-      : AirAqi.fromJson(Map<String, dynamic>.from(json['aqi'] as Map))
+      : AirAqi.fromJson(json['aqi'] as Map<String, dynamic>)
   ..description = json['description'] == null
       ? null
-      : AirDescription.fromJson(
-          Map<String, dynamic>.from(json['description'] as Map));
+      : AirDescription.fromJson(json['description'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$RealTimeAirToJson(RealTimeAir instance) =>
     <String, dynamic>{
@@ -507,18 +491,19 @@ Map<String, dynamic> _$RealTimeAirToJson(RealTimeAir instance) =>
       'description': instance.description,
     };
 
-AirAqi _$AirAqiFromJson(Map json) => AirAqi()
-  ..chn = json['chn'] as int?
-  ..usa = json['usa'] as int?;
+AirAqi _$AirAqiFromJson(Map<String, dynamic> json) => AirAqi()
+  ..chn = (json['chn'] as num?)?.toInt()
+  ..usa = (json['usa'] as num?)?.toInt();
 
 Map<String, dynamic> _$AirAqiToJson(AirAqi instance) => <String, dynamic>{
       'chn': instance.chn,
       'usa': instance.usa,
     };
 
-AirDescription _$AirDescriptionFromJson(Map json) => AirDescription()
-  ..chn = json['chn'] as String?
-  ..usa = json['usa'] as String?;
+AirDescription _$AirDescriptionFromJson(Map<String, dynamic> json) =>
+    AirDescription()
+      ..chn = json['chn'] as String?
+      ..usa = json['usa'] as String?;
 
 Map<String, dynamic> _$AirDescriptionToJson(AirDescription instance) =>
     <String, dynamic>{
@@ -526,14 +511,13 @@ Map<String, dynamic> _$AirDescriptionToJson(AirDescription instance) =>
       'usa': instance.usa,
     };
 
-RealTimeLife _$RealTimeLifeFromJson(Map json) => RealTimeLife()
+RealTimeLife _$RealTimeLifeFromJson(Map<String, dynamic> json) => RealTimeLife()
   ..ultraviolet = json['ultraviolet'] == null
       ? null
-      : LifeUltraviolet.fromJson(
-          Map<String, dynamic>.from(json['ultraviolet'] as Map))
+      : LifeUltraviolet.fromJson(json['ultraviolet'] as Map<String, dynamic>)
   ..comfort = json['comfort'] == null
       ? null
-      : LifeComfort.fromJson(Map<String, dynamic>.from(json['comfort'] as Map));
+      : LifeComfort.fromJson(json['comfort'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$RealTimeLifeToJson(RealTimeLife instance) =>
     <String, dynamic>{
@@ -541,9 +525,10 @@ Map<String, dynamic> _$RealTimeLifeToJson(RealTimeLife instance) =>
       'comfort': instance.comfort,
     };
 
-LifeUltraviolet _$LifeUltravioletFromJson(Map json) => LifeUltraviolet()
-  ..index = (json['index'] as num?)?.toDouble()
-  ..desc = json['desc'] as String?;
+LifeUltraviolet _$LifeUltravioletFromJson(Map<String, dynamic> json) =>
+    LifeUltraviolet()
+      ..index = (json['index'] as num?)?.toDouble()
+      ..desc = json['desc'] as String?;
 
 Map<String, dynamic> _$LifeUltravioletToJson(LifeUltraviolet instance) =>
     <String, dynamic>{
@@ -551,7 +536,7 @@ Map<String, dynamic> _$LifeUltravioletToJson(LifeUltraviolet instance) =>
       'desc': instance.desc,
     };
 
-LifeComfort _$LifeComfortFromJson(Map json) => LifeComfort()
+LifeComfort _$LifeComfortFromJson(Map<String, dynamic> json) => LifeComfort()
   ..index = (json['index'] as num?)?.toDouble()
   ..desc = json['desc'] as String?;
 
@@ -561,7 +546,7 @@ Map<String, dynamic> _$LifeComfortToJson(LifeComfort instance) =>
       'desc': instance.desc,
     };
 
-HourlyPrecipitation _$HourlyPrecipitationFromJson(Map json) =>
+HourlyPrecipitation _$HourlyPrecipitationFromJson(Map<String, dynamic> json) =>
     HourlyPrecipitation()
       ..datetime = json['datetime'] as String?
       ..value = (json['value'] as num?)?.toDouble()
@@ -579,7 +564,7 @@ Map<String, dynamic> _$HourlyPrecipitationToJson(
       'direction': instance.direction,
     };
 
-HourlySkycon _$HourlySkyconFromJson(Map json) => HourlySkycon()
+HourlySkycon _$HourlySkyconFromJson(Map<String, dynamic> json) => HourlySkycon()
   ..datetime = json['datetime'] as String?
   ..value = json['value'] as String?;
 
@@ -589,13 +574,12 @@ Map<String, dynamic> _$HourlySkyconToJson(HourlySkycon instance) =>
       'value': instance.value,
     };
 
-HourlyAir _$HourlyAirFromJson(Map json) => HourlyAir()
+HourlyAir _$HourlyAirFromJson(Map<String, dynamic> json) => HourlyAir()
   ..aqi = (json['aqi'] as List<dynamic>?)
-      ?.map((e) => HourlyAirAqi.fromJson(Map<String, dynamic>.from(e as Map)))
+      ?.map((e) => HourlyAirAqi.fromJson(e as Map<String, dynamic>))
       .toList()
   ..pm25 = (json['pm25'] as List<dynamic>?)
-      ?.map((e) =>
-          HourlyPrecipitation.fromJson(Map<String, dynamic>.from(e as Map)))
+      ?.map((e) => HourlyPrecipitation.fromJson(e as Map<String, dynamic>))
       .toList();
 
 Map<String, dynamic> _$HourlyAirToJson(HourlyAir instance) => <String, dynamic>{
@@ -603,11 +587,11 @@ Map<String, dynamic> _$HourlyAirToJson(HourlyAir instance) => <String, dynamic>{
       'pm25': instance.pm25,
     };
 
-HourlyAirAqi _$HourlyAirAqiFromJson(Map json) => HourlyAirAqi()
+HourlyAirAqi _$HourlyAirAqiFromJson(Map<String, dynamic> json) => HourlyAirAqi()
   ..datetime = json['datetime'] as String?
   ..value = json['value'] == null
       ? null
-      : DailyChildChn.fromJson(Map<String, dynamic>.from(json['value'] as Map));
+      : DailyChildChn.fromJson(json['value'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$HourlyAirAqiToJson(HourlyAirAqi instance) =>
     <String, dynamic>{
@@ -615,7 +599,7 @@ Map<String, dynamic> _$HourlyAirAqiToJson(HourlyAirAqi instance) =>
       'value': instance.value,
     };
 
-AlertContent _$AlertContentFromJson(Map json) => AlertContent()
+AlertContent _$AlertContentFromJson(Map<String, dynamic> json) => AlertContent()
   ..province = json['province'] as String?
   ..status = json['status'] as String?
   ..code = json['code'] as String?
@@ -649,7 +633,7 @@ Map<String, dynamic> _$AlertContentToJson(AlertContent instance) =>
       'latlon': instance.latlon,
     };
 
-AlertAdcodes _$AlertAdcodesFromJson(Map json) => AlertAdcodes()
+AlertAdcodes _$AlertAdcodesFromJson(Map<String, dynamic> json) => AlertAdcodes()
   ..adcode = (json['adcode'] as num?)?.toDouble()
   ..name = json['name'] as String?;
 

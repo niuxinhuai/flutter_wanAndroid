@@ -6,12 +6,12 @@ part of 'register.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RegisterWrap _$RegisterWrapFromJson(Map json) => RegisterWrap()
+RegisterWrap _$RegisterWrapFromJson(Map<String, dynamic> json) => RegisterWrap()
   ..errorMsg = json['errorMsg'] as String?
-  ..errorCode = json['errorCode'] as int?
+  ..errorCode = (json['errorCode'] as num?)?.toInt()
   ..data = json['data'] == null
       ? null
-      : RegisterData.fromJson(Map<String, dynamic>.from(json['data'] as Map));
+      : RegisterData.fromJson(json['data'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$RegisterWrapToJson(RegisterWrap instance) =>
     <String, dynamic>{
@@ -20,19 +20,19 @@ Map<String, dynamic> _$RegisterWrapToJson(RegisterWrap instance) =>
       'data': instance.data,
     };
 
-RegisterData _$RegisterDataFromJson(Map json) => RegisterData()
+RegisterData _$RegisterDataFromJson(Map<String, dynamic> json) => RegisterData()
   ..admin = json['admin'] as bool?
   ..chapterTops = json['chapterTops'] as List<dynamic>?
-  ..coinCount = json['coinCount'] as int?
+  ..coinCount = (json['coinCount'] as num?)?.toInt()
   ..collectIds = json['collectIds'] as List<dynamic>?
   ..email = json['email'] as String?
   ..icon = json['icon'] as String?
-  ..id = json['id'] as int?
+  ..id = (json['id'] as num?)?.toInt()
   ..nickname = json['nickname'] as String?
   ..password = json['password'] as String?
   ..publicName = json['publicName'] as String?
   ..token = json['token'] as String?
-  ..type = json['type'] as int?
+  ..type = (json['type'] as num?)?.toInt()
   ..username = json['username'] as String?;
 
 Map<String, dynamic> _$RegisterDataToJson(RegisterData instance) =>

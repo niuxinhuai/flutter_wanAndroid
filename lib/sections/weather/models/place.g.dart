@@ -6,11 +6,11 @@ part of 'place.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlaceStage _$PlaceStageFromJson(Map json) => PlaceStage()
+PlaceStage _$PlaceStageFromJson(Map<String, dynamic> json) => PlaceStage()
   ..status = json['status'] as String?
   ..query = json['query'] as String?
   ..places = (json['places'] as List<dynamic>?)
-      ?.map((e) => CityPlace.fromJson(Map<String, dynamic>.from(e as Map)))
+      ?.map((e) => CityPlace.fromJson(e as Map<String, dynamic>))
       .toList();
 
 Map<String, dynamic> _$PlaceStageToJson(PlaceStage instance) =>
@@ -20,15 +20,14 @@ Map<String, dynamic> _$PlaceStageToJson(PlaceStage instance) =>
       'places': instance.places,
     };
 
-CityPlace _$CityPlaceFromJson(Map json) => CityPlace()
+CityPlace _$CityPlaceFromJson(Map<String, dynamic> json) => CityPlace()
   ..id = json['id'] as String?
   ..name = json['name'] as String?
   ..formatted_address = json['formatted_address'] as String?
   ..place_id = json['place_id'] as String?
   ..location = json['location'] == null
       ? null
-      : CityLocation.fromJson(
-          Map<String, dynamic>.from(json['location'] as Map));
+      : CityLocation.fromJson(json['location'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$CityPlaceToJson(CityPlace instance) => <String, dynamic>{
       'id': instance.id,
@@ -38,7 +37,7 @@ Map<String, dynamic> _$CityPlaceToJson(CityPlace instance) => <String, dynamic>{
       'location': instance.location,
     };
 
-CityLocation _$CityLocationFromJson(Map json) => CityLocation()
+CityLocation _$CityLocationFromJson(Map<String, dynamic> json) => CityLocation()
   ..lat = (json['lat'] as num?)?.toDouble()
   ..lng = (json['lng'] as num?)?.toDouble();
 

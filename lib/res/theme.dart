@@ -8,24 +8,18 @@ ThemeData getAppTheme({bool isDarkMode = false}) {
     primarySwatch: CommonColors.primary,
     primaryColor: CommonColors.primary,
     brightness: isDarkMode ? Brightness.dark : Brightness.light,
-    primaryColorBrightness: isDarkMode ? Brightness.dark : Brightness.light,
     scaffoldBackgroundColor: CommonColors.backgroundColor,
-    backgroundColor: CommonColors.backgroundColor,
-    //checkbox radio switch 选中颜色
-    toggleableActiveColor: CommonColors.divider,
     disabledColor: CommonColors.disableColor,
     unselectedWidgetColor: CommonColors.disableColor,
     cardColor: CommonColors.foregroundColor,
     hintColor: CommonColors.textColor999,
-    errorColor: CommonColors.hintErrorTextColor,
-    bottomAppBarColor: CommonColors.foregroundColor,
+    bottomAppBarTheme:
+        BottomAppBarThemeData(color: CommonColors.foregroundColor),
     canvasColor: CommonColors.backgroundColor,
     //InkWell按下效果
     highlightColor: CommonColors.keyboardPressBgColor,
     //InkWell波纹扩散颜色
     splashColor: Color(0x66c8c8c8),
-    //选择行颜色
-    selectedRowColor: Color(0xfff5f5f5),
     secondaryHeaderColor: Color(0xffe3f2fd),
     indicatorColor: CommonColors.secondary,
 
@@ -33,20 +27,18 @@ ThemeData getAppTheme({bool isDarkMode = false}) {
 
     colorScheme: ColorScheme(
       primary: CommonColors.primary,
-      primaryVariant: CommonColors.primary,
       secondary: CommonColors.secondary,
-      secondaryVariant: CommonColors.secondary,
+      primaryContainer: CommonColors.primary,
+      secondaryContainer: CommonColors.secondary,
 
       //前景色
       surface: CommonColors.foregroundColor,
-      background: CommonColors.backgroundColor,
       error: CommonColors.hintErrorTextColor,
 
       //在primary位置的字的颜色
       onPrimary: CommonColors.onPrimaryTextColor,
       onSecondary: CommonColors.onPrimaryTextColor,
       onSurface: CommonColors.onSurfaceTextColor,
-      onBackground: CommonColors.onSurfaceTextColor,
       onError: CommonColors.hintErrorTextColor,
       brightness: isDarkMode ? Brightness.dark : Brightness.light,
     ),
@@ -74,7 +66,7 @@ ThemeData getAppTheme({bool isDarkMode = false}) {
             ? SystemUiOverlayStyle.light
             : SystemUiOverlayStyle.dark),
 
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: TabBarThemeData(
         indicatorSize: TabBarIndicatorSize.tab,
         indicator: UnderlineTabIndicator(
             borderSide: BorderSide(color: CommonColors.secondary, width: 2)),
@@ -122,7 +114,7 @@ ThemeData getAppTheme({bool isDarkMode = false}) {
       opacity: 1.0,
       size: 24.0,
     ),
-    dialogTheme: DialogTheme(
+    dialogTheme: DialogThemeData(
         backgroundColor: CommonColors.foregroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -140,75 +132,75 @@ ThemeData getAppTheme({bool isDarkMode = false}) {
             height: 1.3)),
 
     textTheme: TextTheme(
-      headline1: TextStyle(
+      displayLarge: TextStyle(
         fontSize: 96.0,
         fontWeight: FontWeight.normal,
       ),
       //showDatePicker里的date使用
-      headline2: TextStyle(
+      displayMedium: TextStyle(
         fontSize: 60.0,
         fontWeight: FontWeight.normal,
       ),
-      headline3:
+      displaySmall:
           TextStyle(fontSize: 30.0, fontWeight: FontWeight.normal, height: 2),
 
       ///绿色标题
-      headline4: TextStyle(
+      headlineMedium: TextStyle(
         color: CommonColors.primary,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
 
       ///大标题  例如：showDatePicker里的month、year使用
-      headline5: TextStyle(
+      headlineSmall: TextStyle(
         fontSize: 19.0,
         fontWeight: FontWeight.bold,
       ),
 
       ///段落标题  例如：AppBar.title和AlertDialog.title
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         fontSize: 18.0,
         fontWeight: FontWeight.bold,
       ),
 
       ///次标题  例如：ListView 中ListTile.title
-      subtitle1: TextStyle(
+      titleMedium: TextStyle(
         fontSize: 15.0,
         fontWeight: FontWeight.normal,
       ),
 
       ///小标题
-      subtitle2: TextStyle(
+      titleSmall: TextStyle(
         fontSize: 13.0,
         fontWeight: FontWeight.normal,
       ),
 
       ///默认
-      bodyText2: TextStyle(
+      bodyMedium: TextStyle(
         fontSize: 17.0,
         fontWeight: FontWeight.normal,
       ),
 
       ///说明文字
-      bodyText1: TextStyle(
+      bodyLarge: TextStyle(
         fontSize: 15.0,
         fontWeight: FontWeight.normal,
       ),
 
       ///图表的标题栏
-      caption: TextStyle(
+      bodySmall: TextStyle(
         fontSize: 12.0,
         fontWeight: FontWeight.normal,
       ),
 
       ///按钮
-      button: TextStyle(
+      labelLarge: TextStyle(
         color: CommonColors.onPrimaryTextColor,
         fontSize: 17.0,
         fontWeight: FontWeight.normal,
       ),
 
-      overline: TextStyle(
+      labelSmall: TextStyle(
         fontSize: 10.0,
         fontWeight: FontWeight.normal,
       ),

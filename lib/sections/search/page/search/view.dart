@@ -71,7 +71,7 @@ Widget _buildTextField(
           dispatch(SearchArticleActionCreator.onSubmitAction(str)),
       style: Theme.of(viewService.context)
           .textTheme
-          .subtitle2!
+          .titleSmall!
           .copyWith(color: CommonColors.primary),
       controller: state.textEditingController,
       textCapitalization: TextCapitalization.sentences,

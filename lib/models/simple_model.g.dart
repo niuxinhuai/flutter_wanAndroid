@@ -6,9 +6,9 @@ part of 'simple_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SimpleModel _$SimpleModelFromJson(Map json) => SimpleModel()
+SimpleModel _$SimpleModelFromJson(Map<String, dynamic> json) => SimpleModel()
   ..errorMsg = json['errorMsg'] as String?
-  ..errorCode = json['errorCode'] as int?
+  ..errorCode = (json['errorCode'] as num?)?.toInt()
   ..data = json['data'];
 
 Map<String, dynamic> _$SimpleModelToJson(SimpleModel instance) =>
@@ -18,10 +18,11 @@ Map<String, dynamic> _$SimpleModelToJson(SimpleModel instance) =>
       'data': instance.data,
     };
 
-IntSimpleModel _$IntSimpleModelFromJson(Map json) => IntSimpleModel()
-  ..errorMsg = json['errorMsg'] as String?
-  ..errorCode = json['errorCode'] as int?
-  ..data = json['data'] as int?;
+IntSimpleModel _$IntSimpleModelFromJson(Map<String, dynamic> json) =>
+    IntSimpleModel()
+      ..errorMsg = json['errorMsg'] as String?
+      ..errorCode = (json['errorCode'] as num?)?.toInt()
+      ..data = (json['data'] as num?)?.toInt();
 
 Map<String, dynamic> _$IntSimpleModelToJson(IntSimpleModel instance) =>
     <String, dynamic>{
@@ -30,10 +31,11 @@ Map<String, dynamic> _$IntSimpleModelToJson(IntSimpleModel instance) =>
       'data': instance.data,
     };
 
-StringSimpleModel _$StringSimpleModelFromJson(Map json) => StringSimpleModel()
-  ..errorMsg = json['errorMsg'] as String?
-  ..errorCode = json['errorCode'] as int?
-  ..data = json['data'] as String?;
+StringSimpleModel _$StringSimpleModelFromJson(Map<String, dynamic> json) =>
+    StringSimpleModel()
+      ..errorMsg = json['errorMsg'] as String?
+      ..errorCode = (json['errorCode'] as num?)?.toInt()
+      ..data = json['data'] as String?;
 
 Map<String, dynamic> _$StringSimpleModelToJson(StringSimpleModel instance) =>
     <String, dynamic>{

@@ -6,9 +6,10 @@ part of 'db_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserSearchLog _$UserSearchLogFromJson(Map json) => UserSearchLog()
-  ..keyWords = json['key_wrod'] as String?
-  ..time = json['time'] as int?;
+UserSearchLog _$UserSearchLogFromJson(Map<String, dynamic> json) =>
+    UserSearchLog()
+      ..keyWords = json['key_wrod'] as String?
+      ..time = (json['time'] as num?)?.toInt();
 
 Map<String, dynamic> _$UserSearchLogToJson(UserSearchLog instance) =>
     <String, dynamic>{
@@ -16,12 +17,13 @@ Map<String, dynamic> _$UserSearchLogToJson(UserSearchLog instance) =>
       'time': instance.time,
     };
 
-UserWeatherLog _$UserWeatherLogFromJson(Map json) => UserWeatherLog()
-  ..city_id = json['city_id'] as String?
-  ..city = json['city'] as String?
-  ..lat = json['lat'] as String?
-  ..lng = json['lng'] as String?
-  ..ind = json['ind'] as int?;
+UserWeatherLog _$UserWeatherLogFromJson(Map<String, dynamic> json) =>
+    UserWeatherLog()
+      ..city_id = json['city_id'] as String?
+      ..city = json['city'] as String?
+      ..lat = json['lat'] as String?
+      ..lng = json['lng'] as String?
+      ..ind = (json['ind'] as num?)?.toInt();
 
 Map<String, dynamic> _$UserWeatherLogToJson(UserWeatherLog instance) =>
     <String, dynamic>{

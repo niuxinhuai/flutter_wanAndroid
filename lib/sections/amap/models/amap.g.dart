@@ -6,13 +6,14 @@ part of 'amap.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MapLocationEvent _$MapLocationEventFromJson(Map json) => MapLocationEvent()
-  ..callbackTime = json['callbackTime'] as String?
-  ..locationTime = json['locationTime'] as String?
-  ..latitude = json['latitude'] as String?
-  ..longitude = json['longitude'] as String?
-  ..errorCode = json['errorCode'] as int?
-  ..errorInfo = json['errorInfo'] as String?;
+MapLocationEvent _$MapLocationEventFromJson(Map<String, dynamic> json) =>
+    MapLocationEvent()
+      ..callbackTime = json['callbackTime'] as String?
+      ..locationTime = json['locationTime'] as String?
+      ..latitude = json['latitude'] as String?
+      ..longitude = json['longitude'] as String?
+      ..errorCode = (json['errorCode'] as num?)?.toInt()
+      ..errorInfo = json['errorInfo'] as String?;
 
 Map<String, dynamic> _$MapLocationEventToJson(MapLocationEvent instance) =>
     <String, dynamic>{

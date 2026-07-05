@@ -1,31 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart' as webview;
 
 class WebViewWidget extends StatefulWidget {
   final String? url;
-  final PageLoadingCallback? onProgress;
-  final PageFinishedCallback? onPageFinished;
+  final void Function(int)? onProgress;
+  final void Function(String)? onPageFinished;
 
-  WebViewWidget({this.url, this.onProgress, this.onPageFinished});
+  const WebViewWidget({Key? key, this.url, this.onProgress, this.onPageFinished})
+      : super(key: key);
 
   @override
   _WebViewWidgetState createState() => _WebViewWidgetState();
 }
 
 class _WebViewWidgetState extends State<WebViewWidget> {
+  late final webview.WebViewController _controller;
+
   @override
   void initState() {
     super.initState();
-    // Enable virtual display.
+    _controller = webview.WebViewController()
+      ..setJavaScriptMode(webview.JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
+        webview.NavigationDelegate(
+          onProgress: widget.onProgress,
+          onPageFinished: widget.onPageFinished,
+        ),
+      );
+
+    final url = widget.url;
+    if (url != null && url.isNotEmpty) {
+      _controller.loadRequest(Uri.parse(url));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return WebView(
-      initialUrl: widget.url,
-      onProgress: widget.onProgress,
-      javascriptMode: JavascriptMode.unrestricted,
-      onPageFinished: widget.onPageFinished,
-    );
+    return webview.WebViewWidget(controller: _controller);
   }
 }

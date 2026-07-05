@@ -36,7 +36,7 @@ class GpErrorWidget extends StatelessWidget {
     if (showBackOnError) {
       return Scaffold(
         appBar: GpAppBar(
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 0,
         ),
         body: content,
